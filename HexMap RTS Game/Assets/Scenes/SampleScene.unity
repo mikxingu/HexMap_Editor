@@ -410,7 +410,7 @@ PrefabInstance:
     - target: {fileID: 3189387292087577329, guid: 2eb992ea61d2d2548816dad65466e9aa,
         type: 3}
       propertyPath: m_Name
-      value: Text
+      value: Hex Cell Label
       objectReference: {fileID: 0}
     - target: {fileID: 7951063368635823002, guid: 2eb992ea61d2d2548816dad65466e9aa,
         type: 3}
@@ -516,36 +516,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Pivot.y
       value: 0.5
-      objectReference: {fileID: 0}
-    - target: {fileID: 1596213888356786478, guid: 2eb992ea61d2d2548816dad65466e9aa,
-        type: 3}
-      propertyPath: m_FontData.m_FontSize
-      value: 4
-      objectReference: {fileID: 0}
-    - target: {fileID: 1596213888356786478, guid: 2eb992ea61d2d2548816dad65466e9aa,
-        type: 3}
-      propertyPath: m_FontData.m_MinSize
-      value: 4
-      objectReference: {fileID: 0}
-    - target: {fileID: 1596213888356786478, guid: 2eb992ea61d2d2548816dad65466e9aa,
-        type: 3}
-      propertyPath: m_FontData.m_Alignment
-      value: 4
-      objectReference: {fileID: 0}
-    - target: {fileID: 1596213888356786478, guid: 2eb992ea61d2d2548816dad65466e9aa,
-        type: 3}
-      propertyPath: m_RaycastTarget
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1596213888356786478, guid: 2eb992ea61d2d2548816dad65466e9aa,
-        type: 3}
-      propertyPath: m_FontData.m_RichText
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1596213888356786478, guid: 2eb992ea61d2d2548816dad65466e9aa,
-        type: 3}
-      propertyPath: m_Text
-      value: 
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 2eb992ea61d2d2548816dad65466e9aa, type: 3}
