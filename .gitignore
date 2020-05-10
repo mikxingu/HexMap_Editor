@@ -262,4 +262,4 @@ __pycache__/
 
 #Unity unecessary files and folders
 Temp/
-Library/
+Library/metadata
