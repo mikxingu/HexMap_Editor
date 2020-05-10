@@ -60,7 +60,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Assets\Editor\HexCoordinatesDrawer.cs" />
+    <Compile Include="Assets\Scripts\Editor\HexCoordinatesDrawer.cs" />
     <Reference Include="Unity.TextMeshPro.Editor">
       <HintPath>C:/Users/Mike/Desktop/Projects/HexMap_Game/HexMap RTS Game/Library/ScriptAssemblies/Unity.TextMeshPro.Editor.dll</HintPath>
     </Reference>
