@@ -1,28 +1,30 @@
 ﻿using UnityEngine;
 using UnityEngine.EventSystems;
 
+//Classe com as funções do meu editor de mapa.
 public class HexMapEditor : MonoBehaviour
 {
+
 	public Color[] colors;
 
 	public HexGrid hexGrid;
 
 	private Color activeColor;
 
-	void Awake()
+	void Awake ()
 	{
 		SelectColor(0);
 	}
 
-	void Update()
+	void Update ()
 	{
-		if (Input.GetMouseButton(0) && !EventSystem.current.IsPointerOverGameObject()) 
+		if (Input.GetMouseButton(0) &&!EventSystem.current.IsPointerOverGameObject())
 		{
 			HandleInput();
 		}
 	}
 
-	void HandleInput()
+	void HandleInput ()
 	{
 		Ray inputRay = Camera.main.ScreenPointToRay(Input.mousePosition);
 		RaycastHit hit;
@@ -30,10 +32,9 @@ public class HexMapEditor : MonoBehaviour
 		{
 			hexGrid.ColorCell(hit.point, activeColor);
 		}
-
 	}
 
-	public void SelectColor ( int index)
+	public void SelectColor (int index)
 	{
 		activeColor = colors[index];
 	}
