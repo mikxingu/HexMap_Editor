@@ -1,14 +1,12 @@
 ﻿using UnityEngine;
 using UnityEngine.UI;
-using System.Collections;
-using System.Collections.Generic;
 
 public class HexGrid : MonoBehaviour
 {
 	public Color defaultColor = Color.white;
-	public Color touchedColor = Color.magenta;
 
 	public int width = 6;
+
 	public int height = 6;
 
 	public HexCell cellPrefab;
