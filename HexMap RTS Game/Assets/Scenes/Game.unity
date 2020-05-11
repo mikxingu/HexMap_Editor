@@ -844,6 +844,7 @@ MonoBehaviour:
     type: 3}
   cellLabelPrefab: {fileID: 1596213888356786478, guid: 2eb992ea61d2d2548816dad65466e9aa,
     type: 3}
+  noiseSource: {fileID: 2800000, guid: 45ccd42c66727b44c97652df1d58488d, type: 3}
 --- !u!4 &427400030
 Transform:
   m_ObjectHideFlags: 0
@@ -1009,13 +1010,13 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 534669902}
-  m_LocalRotation: {x: 0.31225392, y: -0, z: -0, w: 0.9499987}
-  m_LocalPosition: {x: 28, y: 51, z: -37}
+  m_LocalRotation: {x: 0.36983606, y: -0, z: -0, w: 0.92909706}
+  m_LocalPosition: {x: 42.2, y: 67.6, z: -37}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 36.390003, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 43.411003, y: 0, z: 0}
 --- !u!1 &539560130
 GameObject:
   m_ObjectHideFlags: 0
