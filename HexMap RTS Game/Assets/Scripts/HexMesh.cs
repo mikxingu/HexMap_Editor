@@ -213,8 +213,8 @@ public class HexMesh : MonoBehaviour
 			Vector3 v2 = v4;
 			Color c1 = c3;
 			Color c2 = c4;
-			v3 = HexMetrics.TerraceLerp(begin, left, 1);
-			v4 = HexMetrics.TerraceLerp(begin, right, 1);
+			v3 = HexMetrics.TerraceLerp(begin, left, i);
+			v4 = HexMetrics.TerraceLerp(begin, right, i);
 			c3 = HexMetrics.TerraceLerp(beginCell.color, leftCell.color, i);
 			c4 = HexMetrics.TerraceLerp(beginCell.color, rightCell.color, i);
 
