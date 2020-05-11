@@ -1,9 +1,6 @@
 ﻿using UnityEngine;
 
-
-//Classe que gerencia o tamanho do meu Hexagono.
-public static class HexMetrics
-{
+public static class HexMetrics {
 
 	public const float outerRadius = 10f;
 
@@ -23,8 +20,7 @@ public static class HexMetrics
 
 	public const float verticalTerraceStepSize = 1f / (terracesPerSlope + 1);
 
-	static Vector3[] corners = 
-	{
+	static Vector3[] corners = {
 		new Vector3(0f, 0f, outerRadius),
 		new Vector3(innerRadius, 0f, 0.5f * outerRadius),
 		new Vector3(innerRadius, 0f, -0.5f * outerRadius),
@@ -34,34 +30,28 @@ public static class HexMetrics
 		new Vector3(0f, 0f, outerRadius)
 	};
 
-	public static Vector3 GetFirstCorner (HexDirection direction)
-	{
+	public static Vector3 GetFirstCorner (HexDirection direction) {
 		return corners[(int)direction];
 	}
 
-	public static Vector3 GetSecondCorner (HexDirection direction)
-	{
+	public static Vector3 GetSecondCorner (HexDirection direction) {
 		return corners[(int)direction + 1];
 	}
 
-	public static Vector3 GetFirstSolidCorner (HexDirection direction)
-	{
+	public static Vector3 GetFirstSolidCorner (HexDirection direction) {
 		return corners[(int)direction] * solidFactor;
 	}
 
-	public static Vector3 GetSecondSolidCorner (HexDirection direction)
-	{
+	public static Vector3 GetSecondSolidCorner (HexDirection direction) {
 		return corners[(int)direction + 1] * solidFactor;
 	}
 
-	public static Vector3 GetBridge (HexDirection direction)
-	{
+	public static Vector3 GetBridge (HexDirection direction) {
 		return (corners[(int)direction] + corners[(int)direction + 1]) *
 			blendFactor;
 	}
 
-	public static Vector3 TerraceLerp (Vector3 a, Vector3 b, int step)
-	{
+	public static Vector3 TerraceLerp (Vector3 a, Vector3 b, int step) {
 		float h = step * HexMetrics.horizontalTerraceStepSize;
 		a.x += (b.x - a.x) * h;
 		a.z += (b.z - a.z) * h;
@@ -70,25 +60,19 @@ public static class HexMetrics
 		return a;
 	}
 
-	public static Color TerraceLerp (Color a, Color b, int step)
-	{
+	public static Color TerraceLerp (Color a, Color b, int step) {
 		float h = step * HexMetrics.horizontalTerraceStepSize;
 		return Color.Lerp(a, b, h);
 	}
 
-	public static HexEdgeType GetEdgeType (int elevation1, int elevation2)
-	{
-		if (elevation1 == elevation2)
-		{
+	public static HexEdgeType GetEdgeType (int elevation1, int elevation2) {
+		if (elevation1 == elevation2) {
 			return HexEdgeType.Flat;
 		}
 		int delta = elevation2 - elevation1;
-		if (delta == 1 || delta == -1)
-		{
+		if (delta == 1 || delta == -1) {
 			return HexEdgeType.Slope;
 		}
 		return HexEdgeType.Cliff;
-		
 	}
-
 }

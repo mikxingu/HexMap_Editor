@@ -1,40 +1,18 @@
 ﻿using UnityEngine;
 
-
-//Classe que gerencia a criação de cada triângulo
-public class HexCell : MonoBehaviour
-{
+public class HexCell : MonoBehaviour {
 
 	public HexCoordinates coordinates;
 
 	public Color color;
 
-	
-
-	[SerializeField]
-	HexCell[] neighbors;
-
 	public RectTransform uiRect;
 
-	public HexCell GetNeighbor (HexDirection direction)
-	{
-		return neighbors[(int)direction];
-	}
-
-	public void SetNeighbor (HexDirection direction, HexCell cell)
-	{
-		neighbors[(int)direction] = cell;
-		cell.neighbors[(int)direction.Opposite()] = this;
-	}
-
-	public int Elevation
-	{
-		get
-		{
+	public int Elevation {
+		get {
 			return elevation;
 		}
-		set
-		{
+		set {
 			elevation = value;
 			Vector3 position = transform.localPosition;
 			position.y = value * HexMetrics.elevationStep;
@@ -46,15 +24,29 @@ public class HexCell : MonoBehaviour
 		}
 	}
 
-	private int elevation;
+	int elevation;
 
-	public HexEdgeType GetEdgeType (HexDirection direction)
-	{
-		return HexMetrics.GetEdgeType(elevation, neighbors[(int)direction].elevation);
+	[SerializeField]
+	HexCell[] neighbors;
+
+	public HexCell GetNeighbor (HexDirection direction) {
+		return neighbors[(int)direction];
 	}
 
-	public HexEdgeType GetEdgeType (HexCell otherCell)
-	{
-		return HexMetrics.GetEdgeType(elevation, otherCell.elevation);
+	public void SetNeighbor (HexDirection direction, HexCell cell) {
+		neighbors[(int)direction] = cell;
+		cell.neighbors[(int)direction.Opposite()] = this;
+	}
+
+	public HexEdgeType GetEdgeType (HexDirection direction) {
+		return HexMetrics.GetEdgeType(
+			elevation, neighbors[(int)direction].elevation
+		);
+	}
+
+	public HexEdgeType GetEdgeType (HexCell otherCell) {
+		return HexMetrics.GetEdgeType(
+			elevation, otherCell.elevation
+		);
 	}
 }
