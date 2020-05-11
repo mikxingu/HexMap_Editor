@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections.Generic;
 
+//mycode
 [RequireComponent(typeof(MeshFilter), typeof(MeshRenderer))]
 public class HexMesh : MonoBehaviour
 {
@@ -12,7 +13,7 @@ public class HexMesh : MonoBehaviour
 
 	MeshCollider meshCollider;
 
-	void Awake ()
+	void Awake()
 	{
 		GetComponent<MeshFilter>().mesh = hexMesh = new Mesh();
 		meshCollider = gameObject.AddComponent<MeshCollider>();
@@ -22,7 +23,7 @@ public class HexMesh : MonoBehaviour
 		triangles = new List<int>();
 	}
 
-	public void Triangulate (HexCell[] cells)
+	public void Triangulate(HexCell[] cells)
 	{
 		hexMesh.Clear();
 		vertices.Clear();
@@ -39,14 +40,15 @@ public class HexMesh : MonoBehaviour
 		meshCollider.sharedMesh = hexMesh;
 	}
 
-	void Triangulate (HexCell cell)
+	void Triangulate(HexCell cell)
 	{
-		for (HexDirection d = HexDirection.NE; d <= HexDirection.NW; d++) {
+		for (HexDirection d = HexDirection.NE; d <= HexDirection.NW; d++)
+		{
 			Triangulate(d, cell);
 		}
 	}
 
-	void Triangulate (HexDirection direction, HexCell cell)
+	void Triangulate(HexDirection direction, HexCell cell)
 	{
 		Vector3 center = cell.transform.localPosition;
 		Vector3 v1 = center + HexMetrics.GetFirstSolidCorner(direction);
@@ -61,7 +63,7 @@ public class HexMesh : MonoBehaviour
 		}
 	}
 
-	void TriangulateConnection (HexDirection direction, HexCell cell, Vector3 v1, Vector3 v2)
+	void TriangulateConnection(HexDirection direction, HexCell cell, Vector3 v1, Vector3 v2)
 	{
 		HexCell neighbor = cell.GetNeighbor(direction);
 		if (neighbor == null)
@@ -74,7 +76,7 @@ public class HexMesh : MonoBehaviour
 		Vector3 v4 = v2 + bridge;
 		v3.y = v4.y = neighbor.Elevation * HexMetrics.elevationStep;
 
-		if(cell.GetEdgeType(direction) == HexEdgeType.Slope)
+		if (cell.GetEdgeType(direction) == HexEdgeType.Slope)
 		{
 			TriangulateEdgeTerraces(v1, v2, cell, v3, v4, neighbor);
 		}
@@ -89,11 +91,11 @@ public class HexMesh : MonoBehaviour
 		if (direction <= HexDirection.E && nextNeighbor != null)
 		{
 			Vector3 v5 = v2 + HexMetrics.GetBridge(direction.Next());
-			v5.y = neighbor.Elevation * HexMetrics.elevationStep;
+			v5.y = nextNeighbor.Elevation * HexMetrics.elevationStep;
 
 			if (cell.Elevation <= neighbor.Elevation)
 			{
-				if(cell.Elevation <nextNeighbor.Elevation)
+				if (cell.Elevation <= nextNeighbor.Elevation)
 				{
 					TriangulateCorner(v2, cell, v4, neighbor, v5, nextNeighbor);
 				}
@@ -115,8 +117,8 @@ public class HexMesh : MonoBehaviour
 		}
 	}
 
-	void TriangulateCorner(Vector3 bottom, HexCell bottomCell, 
-		    				Vector3 left, HexCell leftCell,
+	void TriangulateCorner(Vector3 bottom, HexCell bottomCell,
+							Vector3 left, HexCell leftCell,
 						   Vector3 right, HexCell rightCell)
 	{
 		HexEdgeType leftEdgeType = bottomCell.GetEdgeType(leftCell);
@@ -217,10 +219,10 @@ public class HexMesh : MonoBehaviour
 
 	}
 
-	void TriangulateBoundaryTriangle (Vector3 begin, HexCell beginCell,
+	void TriangulateBoundaryTriangle(Vector3 begin, HexCell beginCell,
 									 Vector3 left, HexCell leftCell,
 									 Vector3 boundary, Color boundaryColor)
-	{ 
+	{
 		Vector3 v2 = HexMetrics.TerraceLerp(begin, left, 1);
 		Color c2 = HexMetrics.TerraceLerp(beginCell.color, leftCell.color, 1);
 
@@ -300,7 +302,7 @@ public class HexMesh : MonoBehaviour
 		AddQuadColor(c2, endCell.color);
 	}
 
-	void AddTriangle (Vector3 v1, Vector3 v2, Vector3 v3)
+	void AddTriangle(Vector3 v1, Vector3 v2, Vector3 v3)
 	{
 		int vertexIndex = vertices.Count;
 		vertices.Add(v1);
@@ -311,21 +313,21 @@ public class HexMesh : MonoBehaviour
 		triangles.Add(vertexIndex + 2);
 	}
 
-	void AddTriangleColor (Color color)
+	void AddTriangleColor(Color color)
 	{
 		colors.Add(color);
 		colors.Add(color);
 		colors.Add(color);
 	}
 
-	void AddTriangleColor (Color c1, Color c2, Color c3)
+	void AddTriangleColor(Color c1, Color c2, Color c3)
 	{
 		colors.Add(c1);
 		colors.Add(c2);
 		colors.Add(c3);
 	}
 
-	void AddQuad (Vector3 v1, Vector3 v2, Vector3 v3, Vector3 v4)
+	void AddQuad(Vector3 v1, Vector3 v2, Vector3 v3, Vector3 v4)
 	{
 		int vertexIndex = vertices.Count;
 		vertices.Add(v1);
@@ -340,7 +342,7 @@ public class HexMesh : MonoBehaviour
 		triangles.Add(vertexIndex + 3);
 	}
 
-	void AddQuadColor (Color c1, Color c2)
+	void AddQuadColor(Color c1, Color c2)
 	{
 		colors.Add(c1);
 		colors.Add(c1);
@@ -348,7 +350,7 @@ public class HexMesh : MonoBehaviour
 		colors.Add(c2);
 	}
 
-	void AddQuadColor (Color c1, Color c2, Color c3, Color c4)
+	void AddQuadColor(Color c1, Color c2, Color c3, Color c4)
 	{
 		colors.Add(c1);
 		colors.Add(c2);
