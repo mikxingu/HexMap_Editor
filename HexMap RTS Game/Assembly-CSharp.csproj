@@ -67,7 +67,11 @@
      <Compile Include="Assets\Scripts\ListPool.cs" />
      <None Include="Assets\Materials\River.shader" />
      <None Include="Assets\Materials\VertexColors.shader" />
+     <None Include="Assets\Materials\Water Shore.shader" />
+     <None Include="Assets\Materials\Estuary.shader" />
      <None Include="Assets\Materials\Road.shader" />
+     <None Include="Assets\Materials\Water.shader" />
+     <None Include="Assets\Materials\Water.cginc" />
  <Reference Include="Unity.TextMeshPro.Editor">
  <HintPath>/home/mike/Desktop/GameDev/HexMap_Game/HexMap RTS Game/Library/ScriptAssemblies/Unity.TextMeshPro.Editor.dll</HintPath>
  </Reference>
