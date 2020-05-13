@@ -193,12 +193,26 @@ public class HexCell : MonoBehaviour {
 		}
 	}
 
+	public bool Walled {
+		get {
+			return walled;
+		}
+		set {
+			if (walled != value) {
+				walled = value;
+				Refresh();
+			}
+		}
+	}
+
 	Color color;
 
 	int elevation = int.MinValue;
 	int waterLevel;
 
 	int urbanLevel, farmLevel, plantLevel;
+
+	bool walled;
 
 	bool hasIncomingRiver, hasOutgoingRiver;
 	HexDirection incomingRiver, outgoingRiver;
