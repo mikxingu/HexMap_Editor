@@ -225,6 +225,18 @@ public class HexCell : MonoBehaviour {
 		}
 	}
 
+	public HexCell PathFrom { get; set; }
+
+	public int SearchHeuristic { get; set; }
+
+	public int SearchPriority {
+		get {
+			return distance + SearchHeuristic;
+		}
+	}
+
+	public HexCell NextWithSamePriority { get; set; }
+
 	int terrainTypeIndex;
 
 	int elevation = int.MinValue;
@@ -484,5 +496,16 @@ public class HexCell : MonoBehaviour {
 	void UpdateDistanceLabel () {
 		UnityEngine.UI.Text label = uiRect.GetComponent<Text>();
 		label.text = distance == int.MaxValue ? "" : distance.ToString();
+	}
+
+	public void DisableHighlight () {
+		Image highlight = uiRect.GetChild(0).GetComponent<Image>();
+		highlight.enabled = false;
+	}
+
+	public void EnableHighlight (Color color) {
+		Image highlight = uiRect.GetChild(0).GetComponent<Image>();
+		highlight.color = color;
+		highlight.enabled = true;
 	}
 }

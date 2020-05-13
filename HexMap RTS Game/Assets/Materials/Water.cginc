@@ -47,6 +47,5 @@ float Waves (float2 worldXZ, sampler2D noiseTex) {
 	float waves =
 		lerp(noise1.z, noise1.w, blendWave) +
 		lerp(noise2.x, noise2.y, blendWave);
-	 noise1.z + noise2.x;
 	return smoothstep(0.75, 2, waves);
 }
