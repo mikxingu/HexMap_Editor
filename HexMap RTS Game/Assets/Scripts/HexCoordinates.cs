@@ -50,13 +50,13 @@ public struct HexCoordinates
 
 		int iX = Mathf.RoundToInt(x);
 		int iY = Mathf.RoundToInt(y);
-		int iZ = Mathf.RoundToInt(-x -y);
+		int iZ = Mathf.RoundToInt(-x - y);
 
 		if (iX + iY + iZ != 0)
 		{
 			float dX = Mathf.Abs(x - iX);
 			float dY = Mathf.Abs(y - iY);
-			float dZ = Mathf.Abs(-x -y - iZ);
+			float dZ = Mathf.Abs(-x - y - iZ);
 
 			if (dX > dY && dX > dZ)
 			{

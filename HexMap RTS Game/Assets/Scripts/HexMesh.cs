@@ -158,6 +158,4 @@ public class HexMesh : MonoBehaviour
 		colors.Add(c3);
 		colors.Add(c4);
 	}
-
-	
 }

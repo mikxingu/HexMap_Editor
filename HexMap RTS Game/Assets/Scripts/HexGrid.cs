@@ -102,7 +102,7 @@ public class HexGrid : MonoBehaviour
 		HexCell cell = cells[i] = Instantiate<HexCell>(cellPrefab);
 		cell.transform.localPosition = position;
 		cell.coordinates = HexCoordinates.FromOffsetCoordinates(x, z);
-		cell.color = defaultColor;
+		cell.Color = defaultColor;
 
 		if (x > 0)
 		{
@@ -122,7 +122,8 @@ public class HexGrid : MonoBehaviour
 			else
 			{
 				cell.SetNeighbor(HexDirection.SW, cells[i - cellCountX]);
-				if (x < cellCountX - 1) {
+				if (x < cellCountX - 1)
+				{
 					cell.SetNeighbor(HexDirection.SE, cells[i - cellCountX + 1]);
 				}
 			}
@@ -145,7 +146,7 @@ public class HexGrid : MonoBehaviour
 		HexGridChunk chunk = chunks[chunkX + chunkZ * chunkCountX];
 
 		int localX = x - chunkX * HexMetrics.chunkSizeX;
-		int localZ = z - chunkZ * HexMetrics.chunkSizeX;
+		int localZ = z - chunkZ * HexMetrics.chunkSizeZ;
 		chunk.AddCell(localX + localZ * HexMetrics.chunkSizeX, cell);
 	}
 }
