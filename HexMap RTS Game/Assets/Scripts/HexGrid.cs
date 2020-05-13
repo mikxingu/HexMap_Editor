@@ -4,8 +4,7 @@ using UnityEngine.UI;
 //Classe que monta meu grid, fazendo as triangulações e alterações na mesh principal.
 public class HexGrid : MonoBehaviour
 {
-
-	int cellCountX = 6, cellCountZ;
+	public int chunkCountX = 4, chunkCountZ = 3;
 
 	public Color defaultColor = Color.white;
 
@@ -13,22 +12,16 @@ public class HexGrid : MonoBehaviour
 	public Text cellLabelPrefab;
 	public HexGridChunk chunkPrefab;
 
-	HexCell[] cells;
 	HexGridChunk[] chunks;
-
-	//Canvas gridCanvas;
-	//HexMesh hexMesh;
-
+	HexCell[] cells;
+	
 	public Texture2D noiseSource;
 
-	public int chunkCountX = 4, chunkCountZ = 3;
+	int cellCountX, cellCountZ;
 
 	void Awake ()
 	{
 		HexMetrics.noiseSource = noiseSource;
-
-		//gridCanvas = GetComponentInChildren<Canvas>();
-		//hexMesh = GetComponentInChildren<HexMesh>();
 
 		cellCountX = chunkCountX * HexMetrics.chunkSizeX;
 		cellCountZ = chunkCountZ * HexMetrics.chunkSizeZ;
@@ -37,10 +30,31 @@ public class HexGrid : MonoBehaviour
 		CreateCells();
 	}
 
-	/*void Start ()
+	void CreateChunks()
 	{
-		hexMesh.Triangulate(cells);
-	}*/
+		chunks = new HexGridChunk[chunkCountX * chunkCountZ];
+		for (int z = 0, i = 0; z < chunkCountZ; z++)
+		{
+			for (int x = 0; x < chunkCountX; x++)
+			{
+				HexGridChunk chunk = chunks[i++] = Instantiate(chunkPrefab);
+				chunk.transform.SetParent(transform);
+			}
+		}
+	}
+
+	void CreateCells()
+	{
+		cells = new HexCell[cellCountZ * cellCountX];
+
+		for (int z = 0, i = 0; z < cellCountZ; z++)
+		{
+			for (int x = 0; x < cellCountX; x++)
+			{
+				CreateCell(x, z, i++);
+			}
+		}
+	}
 
 	void OnEnable()
 	{
@@ -55,12 +69,28 @@ public class HexGrid : MonoBehaviour
 		return cells[index];
 	}
 
-
-
-	/*public void Refresh ()
+	public HexCell GetCell(HexCoordinates coordinates)
 	{
-		hexMesh.Triangulate(cells);
-	}*/
+		int z = coordinates.Z;
+		if (z < 0 || z >= cellCountZ)
+		{
+			return null;
+		}
+		int x = coordinates.X + z / 2;
+		if (x < 0 || x >= cellCountX)
+		{
+			return null;
+		}
+		return cells[x + z * cellCountX];
+	}
+
+	public void ShowUI(bool visible)
+	{
+		for (int i = 0; i < chunks.Length; i++)
+		{
+			chunks[i].ShowUI(visible);
+		}
+	}
 
 	void CreateCell (int x, int z, int i)
 	{
@@ -70,7 +100,6 @@ public class HexGrid : MonoBehaviour
 		position.z = z * (HexMetrics.outerRadius * 1.5f);
 
 		HexCell cell = cells[i] = Instantiate<HexCell>(cellPrefab);
-		//cell.transform.SetParent(transform, false);
 		cell.transform.localPosition = position;
 		cell.coordinates = HexCoordinates.FromOffsetCoordinates(x, z);
 		cell.color = defaultColor;
@@ -100,7 +129,6 @@ public class HexGrid : MonoBehaviour
 		}
 
 		Text label = Instantiate<Text>(cellLabelPrefab);
-		//label.rectTransform.SetParent(gridCanvas.transform, false);
 		label.rectTransform.anchoredPosition = new Vector2(position.x, position.z);
 		label.text = cell.coordinates.ToStringOnSeparateLines();
 		cell.uiRect = label.rectTransform;
@@ -119,54 +147,5 @@ public class HexGrid : MonoBehaviour
 		int localX = x - chunkX * HexMetrics.chunkSizeX;
 		int localZ = z - chunkZ * HexMetrics.chunkSizeX;
 		chunk.AddCell(localX + localZ * HexMetrics.chunkSizeX, cell);
-	}
-
-	void CreateCells()
-	{
-		cells = new HexCell[cellCountZ * cellCountX];
-
-		for (int z = 0, i = 0; z < cellCountZ; z++)
-		{
-			for (int x = 0; x < cellCountX; x++)
-			{
-				CreateCell(x, z, i++);
-			}
-		}
-	}
-
-	void CreateChunks()
-	{
-		chunks = new HexGridChunk[chunkCountX * chunkCountZ];
-		for (int z = 0, i = 0; z < chunkCountZ; z++)
-		{
-			for (int x = 0; x < chunkCountX; x++)
-			{
-				HexGridChunk chunk = chunks[i++] = Instantiate(chunkPrefab);
-				chunk.transform.SetParent(transform);
-			}
-		}
-	}
-
-	public HexCell GetCell(HexCoordinates coordinates)
-	{
-		int z = coordinates.Z;
-		if (z < 0 || z >= cellCountZ)
-		{
-			return null;
-		}
-		int x = coordinates.X + z / 2;
-		if (x < 0 || x >= cellCountX)
-		{
-			return null;
-		}
-		return cells[x + z * cellCountX];
-	}
-
-	public void ShowUI (bool visible)
-	{
-		for (int i = 0; i < chunks.Length; i++)
-		{
-			chunks[i].ShowUI(visible);
-		}
 	}
 }

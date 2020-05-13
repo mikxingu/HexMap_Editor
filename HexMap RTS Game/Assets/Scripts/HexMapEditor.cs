@@ -38,7 +38,7 @@ public class HexMapEditor : MonoBehaviour
 		RaycastHit hit;
 		if (Physics.Raycast(inputRay, out hit))
 		{
-			EditCell(hexGrid.GetCell(hit.point));
+			EditCells(hexGrid.GetCell(hit.point));
 		}
 	}
 	void EditCells (HexCell center)
@@ -53,7 +53,7 @@ public class HexMapEditor : MonoBehaviour
 				EditCell(hexGrid.GetCell(new HexCoordinates(x, z)));
 			}
 		}
-		for (int r = 0, z = centerZ - brushSize; z <= centerZ; z++, r++)
+		for (int r = 0, z = centerZ + brushSize; z > centerZ; z--, r++)
 		{
 			for (int x = centerX - brushSize; x <= centerX + r; x++)
 			{
