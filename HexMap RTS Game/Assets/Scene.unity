@@ -1824,7 +1824,7 @@ GameObject:
   - component: {fileID: 203294116}
   - component: {fileID: 203294117}
   m_Layer: 5
-  m_Name: Color ---
+  m_Name: Terrain ---
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2659,7 +2659,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Wh
+  m_Text: Sw
 --- !u!222 &329897471
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -2995,7 +2995,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Gr
+  m_Text: Grs
 --- !u!222 &429045665
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -4819,7 +4819,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Or
+  m_Text: Stn
 --- !u!222 &686942932
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -8735,7 +8735,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Bl
+  m_Text: Md
 --- !u!222 &1247198273
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -9667,7 +9667,7 @@ GameObject:
   - component: {fileID: 1392876144}
   - component: {fileID: 1392876143}
   m_Layer: 5
-  m_Name: Color Panel
+  m_Name: Terrain Panel
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -10405,12 +10405,6 @@ MonoBehaviour:
     type: 3}
   noiseSource: {fileID: 2800000, guid: 38701cdeb1fb9427cbb585f917aa59cb, type: 3}
   seed: 1234
-  colors:
-  - {r: 1, g: 0.8627451, b: 0, a: 1}
-  - {r: 0.003921569, g: 0.68235296, b: 0.03137255, a: 1}
-  - {r: 0.07450981, g: 0.21960784, b: 0.8392157, a: 1}
-  - {r: 1, g: 0.30588236, b: 0.105882354, a: 1}
-  - {r: 1, g: 1, b: 1, a: 1}
 --- !u!4 &1571186512
 Transform:
   m_ObjectHideFlags: 0
@@ -11313,7 +11307,7 @@ GameObject:
   - component: {fileID: 1725579320}
   - component: {fileID: 1725579321}
   m_Layer: 5
-  m_Name: Color Blue
+  m_Name: Terrain Mud
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -12067,7 +12061,7 @@ GameObject:
   - component: {fileID: 1842771000}
   - component: {fileID: 1842771001}
   m_Layer: 5
-  m_Name: Color Orange
+  m_Name: Terrain Stone
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -13081,7 +13075,7 @@ GameObject:
   - component: {fileID: 1943686845}
   - component: {fileID: 1943686846}
   m_Layer: 5
-  m_Name: Color Yellow
+  m_Name: Terrain Sand
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -13210,7 +13204,7 @@ GameObject:
   - component: {fileID: 1974126510}
   - component: {fileID: 1974126511}
   m_Layer: 5
-  m_Name: Color White
+  m_Name: Terrain Snow
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -13504,7 +13498,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Ye
+  m_Text: Snd
 --- !u!222 &2012973910
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -13891,7 +13885,7 @@ GameObject:
   - component: {fileID: 2077879794}
   - component: {fileID: 2077879795}
   m_Layer: 5
-  m_Name: Color Green
+  m_Name: Terrain Grass
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

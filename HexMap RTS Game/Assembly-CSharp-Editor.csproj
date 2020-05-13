@@ -54,6 +54,7 @@
   </ItemGroup>
   <ItemGroup>
      <Compile Include="Assets\Scripts\Editor\HexCoordinatesDrawer.cs" />
+     <Compile Include="Assets\Scripts\Editor\TextureArrayWizard.cs" />
  <Reference Include="Unity.TextMeshPro.Editor">
  <HintPath>/home/mike/Desktop/GameDev/HexMap_Game/HexMap RTS Game/Library/ScriptAssemblies/Unity.TextMeshPro.Editor.dll</HintPath>
  </Reference>

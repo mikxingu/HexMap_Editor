@@ -14,7 +14,7 @@ public class HexGrid : MonoBehaviour {
 
 	public int seed;
 
-	public Color[] colors;
+//	public Color[] colors;
 
 	HexGridChunk[] chunks;
 	HexCell[] cells;
@@ -24,7 +24,7 @@ public class HexGrid : MonoBehaviour {
 	void Awake () {
 		HexMetrics.noiseSource = noiseSource;
 		HexMetrics.InitializeHashGrid(seed);
-		HexMetrics.colors = colors;
+//		HexMetrics.colors = colors;
 		CreateMap(cellCountX, cellCountZ);
 	}
 
@@ -77,7 +77,7 @@ public class HexGrid : MonoBehaviour {
 		if (!HexMetrics.noiseSource) {
 			HexMetrics.noiseSource = noiseSource;
 			HexMetrics.InitializeHashGrid(seed);
-			HexMetrics.colors = colors;
+//			HexMetrics.colors = colors;
 		}
 	}
 
