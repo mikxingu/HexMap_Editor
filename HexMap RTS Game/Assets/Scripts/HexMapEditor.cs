@@ -10,7 +10,7 @@ public class HexMapEditor : MonoBehaviour {
 	int activeElevation;
 	int activeWaterLevel;
 
-	int activeUrbanLevel, activeFarmLevel, activePlantLevel;
+	int activeUrbanLevel, activeFarmLevel, activePlantLevel, activeSpecialIndex;
 
 	Color activeColor;
 
@@ -20,7 +20,7 @@ public class HexMapEditor : MonoBehaviour {
 	bool applyElevation = true;
 	bool applyWaterLevel = true;
 
-	bool applyUrbanLevel, applyFarmLevel, applyPlantLevel;
+	bool applyUrbanLevel, applyFarmLevel, applyPlantLevel, applySpecialIndex;
 
 	enum OptionalToggle {
 		Ignore, Yes, No
@@ -77,6 +77,14 @@ public class HexMapEditor : MonoBehaviour {
 
 	public void SetPlantLevel (float level) {
 		activePlantLevel = (int)level;
+	}
+
+	public void SetApplySpecialIndex (bool toggle) {
+		applySpecialIndex = toggle;
+	}
+
+	public void SetSpecialIndex (float index) {
+		activeSpecialIndex = (int)index;
 	}
 
 	public void SetBrushSize (float size) {
@@ -174,6 +182,9 @@ public class HexMapEditor : MonoBehaviour {
 			}
 			if (applyWaterLevel) {
 				cell.WaterLevel = activeWaterLevel;
+			}
+			if (applySpecialIndex) {
+				cell.SpecialIndex = activeSpecialIndex;
 			}
 			if (applyUrbanLevel) {
 				cell.UrbanLevel = activeUrbanLevel;
