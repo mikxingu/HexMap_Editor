@@ -75,6 +75,8 @@ public static class HexMetrics {
 
 	public static Texture2D noiseSource;
 
+	public static Color[] colors;
+
 	public static Vector4 SampleNoise (Vector3 position) {
 		return noiseSource.GetPixelBilinear(
 			position.x * noiseScale,
