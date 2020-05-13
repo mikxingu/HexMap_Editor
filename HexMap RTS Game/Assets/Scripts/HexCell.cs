@@ -54,6 +54,12 @@ public class HexCell : MonoBehaviour {
 				RemoveIncomingRiver();
 			}
 
+			for (int i = 0; i < roads.Length; i++) {
+				if (roads[i] && GetElevationDifference((HexDirection)i) > 1) {
+					SetRoad(i, false);
+				}
+			}
+
 			Refresh();
 		}
 	}
@@ -79,6 +85,23 @@ public class HexCell : MonoBehaviour {
 	public bool HasRiverBeginOrEnd {
 		get {
 			return hasIncomingRiver != hasOutgoingRiver;
+		}
+	}
+
+	public HexDirection RiverBeginOrEndDirection {
+		get {
+			return hasIncomingRiver ? incomingRiver : outgoingRiver;
+		}
+	}
+
+	public bool HasRoads {
+		get {
+			for (int i = 0; i < roads.Length; i++) {
+				if (roads[i]) {
+					return true;
+				}
+			}
+			return false;
 		}
 	}
 
@@ -125,6 +148,9 @@ public class HexCell : MonoBehaviour {
 
 	[SerializeField]
 	HexCell[] neighbors;
+
+	[SerializeField]
+	bool[] roads;
 
 	public HexCell GetNeighbor (HexDirection direction) {
 		return neighbors[(int)direction];
@@ -198,12 +224,45 @@ public class HexCell : MonoBehaviour {
 		}
 		hasOutgoingRiver = true;
 		outgoingRiver = direction;
-		RefreshSelfOnly();
 
 		neighbor.RemoveIncomingRiver();
 		neighbor.hasIncomingRiver = true;
 		neighbor.incomingRiver = direction.Opposite();
-		neighbor.RefreshSelfOnly();
+
+		SetRoad((int)direction, false);
+	}
+
+	public bool HasRoadThroughEdge (HexDirection direction) {
+		return roads[(int)direction];
+	}
+
+	public void AddRoad (HexDirection direction) {
+		if (
+			!roads[(int)direction] && !HasRiverThroughEdge(direction) &&
+			GetElevationDifference(direction) <= 1
+		) {
+			SetRoad((int)direction, true);
+		}
+	}
+
+	public void RemoveRoads () {
+		for (int i = 0; i < neighbors.Length; i++) {
+			if (roads[i]) {
+				SetRoad(i, false);
+			}
+		}
+	}
+
+	public int GetElevationDifference (HexDirection direction) {
+		int difference = elevation - GetNeighbor(direction).elevation;
+		return difference >= 0 ? difference : -difference;
+	}
+
+	void SetRoad (int index, bool state) {
+		roads[index] = state;
+		neighbors[index].roads[(int)((HexDirection)index).Opposite()] = state;
+		neighbors[index].RefreshSelfOnly();
+		RefreshSelfOnly();
 	}
 
 	void Refresh () {
