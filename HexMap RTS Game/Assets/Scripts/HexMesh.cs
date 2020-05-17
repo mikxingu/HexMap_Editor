@@ -5,16 +5,16 @@ using System.Collections.Generic;
 [RequireComponent(typeof(MeshFilter), typeof(MeshRenderer))]
 public class HexMesh : MonoBehaviour
 {
+	public bool useCollider, useColors, useUVCoordinates;
 
-	Mesh hexMesh;
+	
 	[NonSerialized] List<Vector3> vertices;
 	[NonSerialized] List<Color> colors;
 	[NonSerialized] List<int> triangles;
 	[NonSerialized] List<Vector2> uvs;
 
+	Mesh hexMesh;
 	MeshCollider meshCollider;
-
-	public bool useCollider, useColors, useUVCoordinates;
 
 	void Awake()
 	{
@@ -26,7 +26,7 @@ public class HexMesh : MonoBehaviour
 		hexMesh.name = "Hex Mesh";
 	}
 
-	public void Clear ()
+	public void Clear()
 	{
 		hexMesh.Clear();
 		vertices = ListPool<Vector3>.Get();
@@ -41,11 +41,11 @@ public class HexMesh : MonoBehaviour
 		triangles = ListPool<int>.Get();
 	}
 
-	public void Apply ()
+	public void Apply()
 	{
 		hexMesh.SetVertices(vertices);
 		ListPool<Vector3>.Add(vertices);
-		if(useColors)
+		if (useColors)
 		{
 			hexMesh.SetColors(colors);
 			ListPool<Color>.Add(colors);
@@ -53,7 +53,11 @@ public class HexMesh : MonoBehaviour
 		hexMesh.SetTriangles(triangles, 0);
 		ListPool<int>.Add(triangles);
 		hexMesh.RecalculateNormals();
-
+		if (useUVCoordinates)
+		{
+			hexMesh.SetUVs(0, uvs);
+			ListPool<Vector2>.Add(uvs);
+		}
 		if (useCollider)
 		{
 			meshCollider.sharedMesh = hexMesh;
@@ -71,7 +75,7 @@ public class HexMesh : MonoBehaviour
 		triangles.Add(vertexIndex + 2);
 	}
 
-	public void AddTriangleUnperturbed (Vector3 v1, Vector3 v2, Vector3 v3)
+	public void AddTriangleUnperturbed(Vector3 v1, Vector3 v2, Vector3 v3)
 	{
 		int vertexIndex = vertices.Count;
 		vertices.Add(v1);
@@ -82,7 +86,7 @@ public class HexMesh : MonoBehaviour
 		triangles.Add(vertexIndex + 2);
 	}
 
-	public void AddTriangleUV (Vector2 uv1, Vector2 uv2, Vector3 uv3)
+	public void AddTriangleUV(Vector2 uv1, Vector2 uv2, Vector3 uv3)
 	{
 		uvs.Add(uv1);
 		uvs.Add(uv2);
@@ -119,7 +123,7 @@ public class HexMesh : MonoBehaviour
 		triangles.Add(vertexIndex + 3);
 	}
 
-	public void AddQuadUV (Vector2 uv1, Vector2 uv2, Vector3 uv3, Vector3 uv4)
+	public void AddQuadUV(Vector2 uv1, Vector2 uv2, Vector3 uv3, Vector3 uv4)
 	{
 		uvs.Add(uv1);
 		uvs.Add(uv2);
@@ -127,7 +131,7 @@ public class HexMesh : MonoBehaviour
 		uvs.Add(uv4);
 	}
 
-	public void AddQuadUV (float uMin, float uMax, float vMin, float vMax)
+	public void AddQuadUV(float uMin, float uMax, float vMin, float vMax)
 	{
 		uvs.Add(new Vector2(uMin, vMin));
 		uvs.Add(new Vector2(uMax, vMin));
@@ -135,7 +139,7 @@ public class HexMesh : MonoBehaviour
 		uvs.Add(new Vector2(uMax, vMax));
 	}
 
-	public void AddQuadColor (Color color)
+	public void AddQuadColor(Color color)
 	{
 		colors.Add(color);
 		colors.Add(color);
