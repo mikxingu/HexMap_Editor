@@ -17,8 +17,8 @@ public class HexGridChunk : MonoBehaviour
 		ShowUI(false);
 	}
 
-	
-	public void AddCell (int index, HexCell cell)
+
+	public void AddCell(int index, HexCell cell)
 	{
 		cells[index] = cell;
 		cell.chunk = this;
@@ -36,8 +36,8 @@ public class HexGridChunk : MonoBehaviour
 		Triangulate();
 		enabled = false;
 	}
-	
-	public void ShowUI (bool visible)
+
+	public void ShowUI(bool visible)
 	{
 		gridCanvas.gameObject.SetActive(visible);
 	}
@@ -200,8 +200,6 @@ public class HexGridChunk : MonoBehaviour
 		TriangulateRiverQuad(m.v2, m.v4, e.v2, e.v4, cell.RiverSurfaceY, 0.6f, reversed);
 	}
 
-	
-
 	void TriangulateConnection(HexDirection direction, HexCell cell, EdgeVertices e1)
 	{
 		HexCell neighbor = cell.GetNeighbor(direction);
@@ -218,7 +216,7 @@ public class HexGridChunk : MonoBehaviour
 		if (cell.HasRiverThroughEdge(direction))
 		{
 			e2.v3.y = neighbor.StreamBedY;
-			TriangulateRiverQuad(e1.v2, e1.v4, e2.v2, e2.v4, cell.RiverSurfaceY, 0.8f, 
+			TriangulateRiverQuad(e1.v2, e1.v4, e2.v2, e2.v4, cell.RiverSurfaceY, neighbor.RiverSurfaceY, 0.8f,
 								cell.HasIncomingRiver && cell.IncomingRiver == direction);
 		}
 
@@ -437,7 +435,7 @@ public class HexGridChunk : MonoBehaviour
 		terrain.AddTriangleColor(c2, leftCell.Color, boundaryColor);
 	}
 
-	
+
 
 	void TriangulateEdgeFan(Vector3 center, EdgeVertices edge, Color color)
 	{
@@ -465,12 +463,12 @@ public class HexGridChunk : MonoBehaviour
 
 	}
 
-	void TriangulateRiverQuad (Vector3 v1, Vector3 v2, Vector3 v3, Vector3 v4, float y, float v, bool reversed)
+	void TriangulateRiverQuad(Vector3 v1, Vector3 v2, Vector3 v3, Vector3 v4, float y, float v, bool reversed)
 	{
 		TriangulateRiverQuad(v1, v2, v3, v4, y, y, v, reversed);
 	}
 
-	void TriangulateRiverQuad(Vector3 v1, Vector3 v2, Vector3 v3, Vector3 v4, float y1, float y2,float v,  bool reversed)
+	void TriangulateRiverQuad(Vector3 v1, Vector3 v2, Vector3 v3, Vector3 v4, float y1, float y2, float v, bool reversed)
 	{
 		v1.y = v2.y = y1;
 		v3.y = v4.y = y2;
@@ -484,5 +482,4 @@ public class HexGridChunk : MonoBehaviour
 			rivers.AddQuadUV(0f, 1f, v, v + 0.2f);
 		}
 	}
-
 }

@@ -14,12 +14,12 @@ public class HexGrid : MonoBehaviour
 
 	HexGridChunk[] chunks;
 	HexCell[] cells;
-	
+
 	public Texture2D noiseSource;
 
 	int cellCountX, cellCountZ;
 
-	void Awake ()
+	void Awake()
 	{
 		HexMetrics.noiseSource = noiseSource;
 
@@ -61,7 +61,7 @@ public class HexGrid : MonoBehaviour
 		HexMetrics.noiseSource = noiseSource;
 	}
 
-	public HexCell GetCell (Vector3 position)
+	public HexCell GetCell(Vector3 position)
 	{
 		position = transform.InverseTransformPoint(position);
 		HexCoordinates coordinates = HexCoordinates.FromPosition(position);
@@ -92,7 +92,7 @@ public class HexGrid : MonoBehaviour
 		}
 	}
 
-	void CreateCell (int x, int z, int i)
+	void CreateCell(int x, int z, int i)
 	{
 		Vector3 position;
 		position.x = (x + z * 0.5f - z / 2) * (HexMetrics.innerRadius * 2f);
@@ -139,7 +139,7 @@ public class HexGrid : MonoBehaviour
 		AddCellToChunk(x, z, cell);
 	}
 
-	void AddCellToChunk (int x, int z, HexCell cell)
+	void AddCellToChunk(int x, int z, HexCell cell)
 	{
 		int chunkX = x / HexMetrics.chunkSizeX;
 		int chunkZ = z / HexMetrics.chunkSizeZ;

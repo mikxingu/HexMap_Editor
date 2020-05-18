@@ -19,7 +19,7 @@ public class HexMapEditor : MonoBehaviour
 
 	int brushSize;
 
-	enum OptionalToggle { Ignore, Yes, No}
+	enum OptionalToggle { Ignore, Yes, No }
 
 	OptionalToggle riverMode;
 
@@ -29,14 +29,14 @@ public class HexMapEditor : MonoBehaviour
 
 	HexCell previousCell;
 
-	void Awake ()
+	void Awake()
 	{
 		SelectColor(0);
 	}
 
-	void Update ()
+	void Update()
 	{
-		if (Input.GetMouseButton(0) &&!EventSystem.current.IsPointerOverGameObject())
+		if (Input.GetMouseButton(0) && !EventSystem.current.IsPointerOverGameObject())
 		{
 			HandleInput();
 		}
@@ -46,7 +46,7 @@ public class HexMapEditor : MonoBehaviour
 		}
 	}
 
-	void HandleInput ()
+	void HandleInput()
 	{
 		Ray inputRay = Camera.main.ScreenPointToRay(Input.mousePosition);
 		RaycastHit hit;
@@ -69,7 +69,7 @@ public class HexMapEditor : MonoBehaviour
 			previousCell = null;
 		}
 	}
-	void ValidateDrag (HexCell currentCell)
+	void ValidateDrag(HexCell currentCell)
 	{
 		for (dragDirection = HexDirection.NE; dragDirection <= HexDirection.NW; dragDirection++)
 		{
@@ -82,14 +82,14 @@ public class HexMapEditor : MonoBehaviour
 		isDrag = false;
 	}
 
-	void EditCells (HexCell center)
+	void EditCells(HexCell center)
 	{
 		int centerX = center.coordinates.X;
 		int centerZ = center.coordinates.Z;
 
 		for (int r = 0, z = centerZ - brushSize; z <= centerZ; z++, r++)
 		{
-			for (int x = centerX -r; x <= centerX + brushSize; x++)
+			for (int x = centerX - r; x <= centerX + brushSize; x++)
 			{
 				EditCell(hexGrid.GetCell(new HexCoordinates(x, z)));
 			}
@@ -103,7 +103,7 @@ public class HexMapEditor : MonoBehaviour
 		}
 	}
 
-	
+
 
 	void EditCell(HexCell cell)
 	{
@@ -132,7 +132,7 @@ public class HexMapEditor : MonoBehaviour
 		}
 	}
 
-	public void SelectColor (int index)
+	public void SelectColor(int index)
 	{
 		applyColor = index >= 0;
 		if (applyColor)
@@ -141,7 +141,7 @@ public class HexMapEditor : MonoBehaviour
 		}
 	}
 
-	
+
 
 	public void SetBrushSize(float size)
 	{
@@ -149,23 +149,23 @@ public class HexMapEditor : MonoBehaviour
 	}
 
 
-	public void SetElevation (float elevation)
+	public void SetElevation(float elevation)
 	{
 		activeElevation = (int)elevation;
 	}
 
-	public void SetApplyElevation (bool toggle)
+	public void SetApplyElevation(bool toggle)
 	{
 		applyElevation = toggle;
 	}
 
-	
-	public void ShowUI (bool visible)
+
+	public void ShowUI(bool visible)
 	{
 		hexGrid.ShowUI(visible);
 	}
 
-	public void SetRiverMode (int mode)
+	public void SetRiverMode(int mode)
 	{
 		riverMode = (OptionalToggle)mode;
 	}
