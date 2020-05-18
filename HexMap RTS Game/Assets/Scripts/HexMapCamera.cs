@@ -26,11 +26,6 @@ public class HexMapCamera : MonoBehaviour
 
 	}
 
-	void Start()
-    {
-        
-    }
-
     void Update()
     {
 		float zoomDelta = Input.GetAxis("Mouse ScrollWheel");
