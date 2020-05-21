@@ -90,7 +90,7 @@ public static class HexMetrics
 		return corners[(int)direction] * waterFactor;
 	}
 
-	public static Vector3 GetSecondtWaterCorner(HexDirection direction)
+	public static Vector3 GetSecondWaterCorner(HexDirection direction)
 	{
 		return corners[(int)direction + 1] * waterFactor;
 	}

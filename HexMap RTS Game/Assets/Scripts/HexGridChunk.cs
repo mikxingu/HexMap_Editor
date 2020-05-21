@@ -5,7 +5,7 @@ public class HexGridChunk : MonoBehaviour
 {
 	HexCell[] cells;
 
-	public HexMesh terrain, rivers, roads, water, waterShore;
+	public HexMesh terrain, rivers, roads, water, waterShore, estuaries;
 
 	Canvas gridCanvas;
 
@@ -49,6 +49,7 @@ public class HexGridChunk : MonoBehaviour
 		roads.Clear();
 		water.Clear();
 		waterShore.Clear();
+		estuaries.Clear();
 		for (int i = 0; i < cells.Length; i++)
 		{
 			Triangulate(cells[i]);
@@ -58,6 +59,7 @@ public class HexGridChunk : MonoBehaviour
 		roads.Apply();
 		water.Apply();
 		waterShore.Apply();
+		estuaries.Apply();
 	}
 
 	void Triangulate(HexCell cell)
@@ -126,7 +128,7 @@ public class HexGridChunk : MonoBehaviour
 	void TriangulateOpenWater (HexDirection direction, HexCell cell, HexCell neighbor, Vector3 center)
 	{
 		Vector3 c1 = center + HexMetrics.GetFirstWaterCorner(direction);
-		Vector3 c2 = center + HexMetrics.GetSecondtWaterCorner(direction);
+		Vector3 c2 = center + HexMetrics.GetSecondWaterCorner(direction);
 
 		water.AddTriangle(center, c1, c2);
 
@@ -154,19 +156,23 @@ public class HexGridChunk : MonoBehaviour
 	{
 		EdgeVertices e1 = new EdgeVertices(
 			center + HexMetrics.GetFirstWaterCorner(direction),
-			center + HexMetrics.GetSecondtWaterCorner(direction));
+			center + HexMetrics.GetSecondWaterCorner(direction));
 
 		water.AddTriangle(center, e1.v1, e1.v2);
 		water.AddTriangle(center, e1.v2, e1.v3);
 		water.AddTriangle(center, e1.v3, e1.v4);
 		water.AddTriangle(center, e1.v4, e1.v5);
 
-		//Vector3 bridge = HexMetrics.GetWaterBridge(direction);
 		Vector3 center2 = neighbor.Position;
 		center2.y = center.y;
 		EdgeVertices e2 = new EdgeVertices
 			(center2 + HexMetrics.GetSecondSolidCorner(direction.Opposite()),
 			 center2 + HexMetrics.GetFirstSolidCorner(direction.Opposite()));
+
+		if (cell.HasRiverThroughEdge(direction))
+		{
+			TriangulateEstuary(e1, e2, cell.IncomingRiver == direction);
+		}
 
 		waterShore.AddQuad(e1.v1, e1.v2, e2.v1, e2.v2);
 		waterShore.AddQuad(e1.v2, e1.v3, e2.v2, e2.v3);
@@ -180,9 +186,6 @@ public class HexGridChunk : MonoBehaviour
 		HexCell nextNeighbor = cell.GetNeighbor(direction.Next());
 		if (nextNeighbor != null)
 		{
-			///Vector3 center3 = nextNeighbor.Position;
-			//center3.y = center.y;
-
 			Vector3 v3 = nextNeighbor.Position + (nextNeighbor.IsUnderwater ?
 												HexMetrics.GetFirstWaterCorner(direction.Previous()) :
 												HexMetrics.GetFirstSolidCorner(direction.Previous()));
@@ -191,6 +194,58 @@ public class HexGridChunk : MonoBehaviour
 			waterShore.AddTriangleUV(new Vector2(0f, 0f),
 									 new Vector2(0f, 1f),
 									 new Vector2(0f, nextNeighbor.IsUnderwater ? 0f : 1f));
+		}
+	}
+
+	void TriangulateEstuary (EdgeVertices e1, EdgeVertices e2, bool incomingRiver)
+	{
+		waterShore.AddTriangle(e2.v1, e1.v2, e1.v1);
+		waterShore.AddTriangle(e2.v5, e1.v5, e1.v4);
+		waterShore.AddTriangleUV(
+			new Vector2(0f, 1f), new Vector2(0f, 0f), new Vector2(0f, 0f));
+		waterShore.AddTriangleUV(
+			new Vector2(0f, 1f), new Vector2(0f, 0f), new Vector2(0f, 0f));
+
+		estuaries.AddQuad(e2.v1, e1.v2, e2.v2, e1.v3);
+		estuaries.AddTriangle(e1.v3, e2.v2, e2.v4);
+		estuaries.AddQuad(e1.v3, e1.v4, e2.v4, e2.v5);
+
+		estuaries.AddQuadUV(
+						new Vector2(0f, 1f), new Vector2(0f, 0f),
+						new Vector2(1f, 1f), new Vector2(0f, 0f));
+		estuaries.AddTriangleUV (
+						new Vector2(0f, 0f), new Vector2(1f, 1f), new Vector2(1f, 1f));
+
+		estuaries.AddQuadUV(
+						new Vector2(0f, 0f), new Vector2(0f, 0f),
+						new Vector2(1f, 1f), new Vector2(0f, 1f));
+
+
+		if (incomingRiver)
+		{
+			estuaries.AddQuadUV2(
+						new Vector2(1.5f, 1f), new Vector2(0.7f, 1.15f),
+						new Vector2(1f, 0.8f), new Vector2(0.5f, 1.1f));
+			estuaries.AddTriangleUV2(
+							new Vector2(0.5f, 1.1f), new Vector2(1f, 0.8f), new Vector2(0f, 0.8f));
+			estuaries.AddQuadUV2(
+							new Vector2(0.5f, 1.1f), new Vector2(0.3f, 1.15f),
+							new Vector2(0f, 0.8f), new Vector2(-0.5f, 1f));
+		}
+
+		else
+		{
+			estuaries.AddQuadUV2(
+						new Vector2(-0.5f, -0.2f), new Vector2(0.3f, -0.35f),
+						new Vector2(0f, 0f), new Vector2(0.5f, -0.3f));
+
+			estuaries.AddTriangleUV2(new Vector2(0.5f, -0.3f),
+									 new Vector2(0f, 0f),
+									 new Vector2(1f, 0f));
+
+			estuaries.AddQuadUV2(
+						new Vector2(0.5f, -0.3f), new Vector2(0.7f, -0.35f),
+						new Vector2(1f, 0f), new Vector2(1.5f, -0.2f));
 		}
 	}
 
