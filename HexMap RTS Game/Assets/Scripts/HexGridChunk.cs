@@ -81,7 +81,7 @@ public class HexGridChunk : MonoBehaviour
 				}
 				else
 				{
-					TriangulateWithoutRiver(direction, cell, center, e);
+					TriangulateWithRiver(direction, cell, center, e);
 				}
 			}
 			else
@@ -91,7 +91,7 @@ public class HexGridChunk : MonoBehaviour
 		}
 		else
 		{
-			TriangulateEdgeFan(center, e, cell.Color);
+			TriangulateWithoutRiver(direction, cell, center, e);
 		}
 
 		if (direction <= HexDirection.SE)

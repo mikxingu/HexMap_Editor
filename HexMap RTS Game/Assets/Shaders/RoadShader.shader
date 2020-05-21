@@ -11,24 +11,30 @@
 		LOD 200
 		Offset -1, -1
 		CGPROGRAM
-		#pragma surface surf Standard fullforwardshadows
+		#pragma surface surf Standard fullforwardshadows decal:blend
 		#pragma target 3.0
 		sampler2D _MainTex;
-		struct Input {
+		struct Input 
+		{
 		float2 uv_MainTex;
+		float3 worldPos;
 		};
 		half _Glossiness;
 		half _Metallic;
 		fixed4 _Color;
 		void surf(Input IN, inout SurfaceOutputStandard o)
 		 {
-fixed4 c = fixed4(IN.uv_MainTex, 1, 1);
-o.Albedo = c.rgb;
-o.Metallic = _Metallic;
-o.Smoothness = _Glossiness;
-o.Alpha = c.a;
-}
-ENDCG
-	}
+			float4 noise = tex2D(_MainTex, IN.worldPos.xz * 0.025);
+			fixed4 c = _Color * (noise.y * 0.75 + 0.25);
+			float blend = IN.uv_MainTex.x;
+			blend *= noise.x + 0.5;
+			blend = smoothstep(0.4, 0.7, blend);
+			o.Albedo = c.rgb;
+			o.Metallic = _Metallic;
+			o.Smoothness = _Glossiness;
+			o.Alpha = blend;
+		}
+			ENDCG
+			}
 		FallBack "Diffuse"
 }
