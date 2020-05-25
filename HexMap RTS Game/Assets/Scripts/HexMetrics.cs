@@ -4,6 +4,12 @@
 //Classe que gerencia o tamanho do meu Hexagono.
 public static class HexMetrics
 {
+	public const float hashGridScale = 0.25f;
+
+	public const int hashGridSize = 256;
+
+	static HexHash[] hashGrid;
+
 	public const float waterElevationOffset = -0.5f;
 
 	public const float outerToInner = 0.866025404f;
@@ -42,6 +48,13 @@ public static class HexMetrics
 	public const float waterFactor = 0.6f;
 
 	public const float waterBlendFactor = 1f - waterFactor;
+
+	static float[][] featureThresholds =
+	{
+		new float[] {0.0f, 0.0f, 0.4f},
+		new float[] {0.0f, 0.4f, 0.6f},
+		new float[] {0.4f, 0.6f, 0.8f}
+	};
 
 	static Vector3[] corners =
 	{
@@ -145,4 +158,35 @@ public static class HexMetrics
 											position.z * noiseScale);
 	}
 
+
+	public static void InitializeHashGrid(int seed)
+	{
+		hashGrid = new HexHash[hashGridSize * hashGridSize];
+		Random.State currentState = Random.state;
+		Random.InitState(seed);
+		for (int i = 0; i < hashGrid.Length; i++)
+		{
+			hashGrid[i] = HexHash.Create();
+		}
+	}
+
+	public static HexHash SampleHashGrid (Vector3 position)
+	{
+		int x = (int)(position.x * hashGridScale) % hashGridSize;
+		if (x < 0)
+		{
+			x += hashGridSize;
+		}
+		int z = (int)(position.z * hashGridScale) % hashGridSize;
+		if (z < 0)
+		{
+			z += hashGridSize;
+		}
+		return hashGrid[x + z * hashGridSize];
+	}
+
+	public static float[] GetFeatureThresholds (int level)
+	{
+		return featureThresholds[level];
+	}
 }

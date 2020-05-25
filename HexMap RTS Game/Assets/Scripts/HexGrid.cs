@@ -4,6 +4,8 @@ using UnityEngine.UI;
 //Classe que monta meu grid, fazendo as triangulações e alterações na mesh principal.
 public class HexGrid : MonoBehaviour
 {
+	public int seed;
+
 	public int chunkCountX = 4, chunkCountZ = 3;
 
 	public Color defaultColor = Color.white;
@@ -22,6 +24,7 @@ public class HexGrid : MonoBehaviour
 	void Awake()
 	{
 		HexMetrics.noiseSource = noiseSource;
+		HexMetrics.InitializeHashGrid(seed);
 
 		cellCountX = chunkCountX * HexMetrics.chunkSizeX;
 		cellCountZ = chunkCountZ * HexMetrics.chunkSizeZ;
@@ -58,7 +61,11 @@ public class HexGrid : MonoBehaviour
 
 	void OnEnable()
 	{
-		HexMetrics.noiseSource = noiseSource;
+		if (!HexMetrics.noiseSource)
+		{
+			HexMetrics.noiseSource = noiseSource;
+			HexMetrics.InitializeHashGrid(seed);
+		}
 	}
 
 	public HexCell GetCell(Vector3 position)
