@@ -4,34 +4,118 @@ using UnityEngine.EventSystems;
 //Classe com as funções do meu editor de mapa.
 public class HexMapEditor : MonoBehaviour
 {
-
 	public Color[] colors;
 
 	public HexGrid hexGrid;
 
-	private Color activeColor;
-
 	int activeElevation;
 	int activeWaterLevel;
+
 	int activeUrbanLevel, activeFarmLevel, activePlantLevel;
 
-	bool applyColor;
-
-	bool applyElevation = true;
-	bool applyWaterLevel = true;
-	bool applyUrbanLevel, applyFarmLevel, applyPlantLevel;
+	Color activeColor;
 
 	int brushSize;
+
+	bool applyColor;
+	bool applyElevation = true;
+	bool applyWaterLevel = true;
+
+	bool applyUrbanLevel, applyFarmLevel, applyPlantLevel;
+
+	
 
 	enum OptionalToggle { Ignore, Yes, No }
 
 	OptionalToggle riverMode, roadMode;
 
 	bool isDrag;
-
 	HexDirection dragDirection;
-
 	HexCell previousCell;
+
+	public void SelectColor(int index)
+	{
+		applyColor = index >= 0;
+		if (applyColor)
+		{
+			activeColor = colors[index];
+		}
+	}
+
+
+
+	public void SetBrushSize(float size)
+	{
+		brushSize = (int)size;
+	}
+
+
+	public void SetElevation(float elevation)
+	{
+		activeElevation = (int)elevation;
+	}
+
+	public void SetApplyElevation(bool toggle)
+	{
+		applyElevation = toggle;
+	}
+
+
+	public void ShowUI(bool visible)
+	{
+		hexGrid.ShowUI(visible);
+	}
+
+	public void SetRiverMode(int mode)
+	{
+		riverMode = (OptionalToggle)mode;
+	}
+
+	public void SetRoadMode(int mode)
+	{
+		roadMode = (OptionalToggle)mode;
+	}
+
+	public void SetApplyWaterlevel(bool toggle)
+	{
+		applyWaterLevel = toggle;
+	}
+
+	public void SetWaterLevel(float level)
+	{
+		activeWaterLevel = (int)level;
+	}
+
+	public void SetApplyUrbanLevel(bool toggle)
+	{
+		applyUrbanLevel = toggle;
+	}
+
+	public void SetUrbanLevel(float level)
+	{
+		activeUrbanLevel = (int)level;
+	}
+
+	public void SetApplyFarmLevel(bool toggle)
+	{
+		applyFarmLevel = toggle;
+	}
+
+	public void SetFarmLevel(float level)
+	{
+		activeFarmLevel = (int)level;
+	}
+
+	public void SetApplyPlantLevel(bool toggle)
+	{
+		applyPlantLevel = toggle;
+	}
+
+	public void SetPlantLevel(float level)
+	{
+		activePlantLevel = (int)level;
+	}
+
 
 	void Awake()
 	{
@@ -163,87 +247,6 @@ public class HexMapEditor : MonoBehaviour
 		}
 	}
 
-	public void SelectColor(int index)
-	{
-		applyColor = index >= 0;
-		if (applyColor)
-		{
-			activeColor = colors[index];
-		}
-	}
-
-
-
-	public void SetBrushSize(float size)
-	{
-		brushSize = (int)size;
-	}
-
-
-	public void SetElevation(float elevation)
-	{
-		activeElevation = (int)elevation;
-	}
-
-	public void SetApplyElevation(bool toggle)
-	{
-		applyElevation = toggle;
-	}
-
-
-	public void ShowUI(bool visible)
-	{
-		hexGrid.ShowUI(visible);
-	}
-
-	public void SetRiverMode(int mode)
-	{
-		riverMode = (OptionalToggle)mode;
-	}
-
-	public void SetRoadMode (int mode)
-	{
-		roadMode = (OptionalToggle)mode;
-	}
-
-	public void SetApplyWaterlevel (bool toggle)
-	{
-		applyWaterLevel = toggle;
-	}
-
-	public void SetWaterLevel (float level)
-	{
-		activeWaterLevel = (int)level;
-	}
-
-	public void SetApplyUrbanLevel (bool toggle)
-	{
-		applyUrbanLevel = toggle;
-	}
-
-	public void SetUrbanLevel (float level)
-	{
-		activeUrbanLevel = (int)level;
-	}
-
-	public void SetApplyFarmLevel (bool toggle)
-	{
-		applyFarmLevel = toggle;
-	}
-
-	public void SetFarmLevel (float level)
-	{
-		activeFarmLevel = (int)level;
-	}
-
-	public void SetApplyPlantLevel (bool toggle)
-	{
-		applyPlantLevel = toggle;
-	}
-
-	public void SetPlantLevel (float level)
-	{
-		activePlantLevel = (int)level;
-	}
+	
 
 }
