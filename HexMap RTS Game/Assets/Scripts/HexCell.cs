@@ -428,4 +428,22 @@ public class HexCell : MonoBehaviour
 		return difference >= 0 ? difference : -difference;
 	}
 
+	public bool Walled
+	{
+		get
+		{
+			return walled;
+		}
+		set
+		{
+			if (walled != value)
+			{
+				walled = value;
+				Refresh();
+			}
+		}
+	}
+
+	bool walled;
+
 }
