@@ -11,7 +11,7 @@ public class HexMapEditor : MonoBehaviour
 	int activeElevation;
 	int activeWaterLevel;
 
-	int activeUrbanLevel, activeFarmLevel, activePlantLevel;
+	int activeUrbanLevel, activeFarmLevel, activePlantLevel, activeSpecialIndex;
 
 	Color activeColor;
 
@@ -21,13 +21,11 @@ public class HexMapEditor : MonoBehaviour
 	bool applyElevation = true;
 	bool applyWaterLevel = true;
 
-	bool applyUrbanLevel, applyFarmLevel, applyPlantLevel;
-
-	
+	bool applyUrbanLevel, applyFarmLevel, applyPlantLevel, applySpecialIndex;
 
 	enum OptionalToggle { Ignore, Yes, No }
 
-	OptionalToggle riverMode, roadMode;
+	OptionalToggle riverMode, roadMode, walledMode;
 
 	bool isDrag;
 	HexDirection dragDirection;
@@ -76,6 +74,11 @@ public class HexMapEditor : MonoBehaviour
 		roadMode = (OptionalToggle)mode;
 	}
 
+	public void SetApplySpecialIndex (bool toggle)
+	{
+		applySpecialIndex = toggle;
+	}
+
 	public void SetApplyWaterlevel(bool toggle)
 	{
 		applyWaterLevel = toggle;
@@ -116,6 +119,10 @@ public class HexMapEditor : MonoBehaviour
 		activePlantLevel = (int)level;
 	}
 
+	public void SetSpecialIndex (float index)
+	{
+		activeSpecialIndex = (int)index;
+	}
 
 	void Awake()
 	{
@@ -170,6 +177,11 @@ public class HexMapEditor : MonoBehaviour
 		isDrag = false;
 	}
 
+	public void SetWalledMode (int mode)
+	{
+		walledMode = (OptionalToggle)mode;
+	}
+
 	void EditCells(HexCell center)
 	{
 		int centerX = center.coordinates.X;
@@ -209,6 +221,10 @@ public class HexMapEditor : MonoBehaviour
 			{
 				cell.WaterLevel = activeWaterLevel;
 			}
+			if (applySpecialIndex)
+			{
+				cell.SpecialIndex = activeSpecialIndex;
+			}
 			if (applyUrbanLevel)
 			{
 				cell.UrbanLevel = activeUrbanLevel;
@@ -228,6 +244,10 @@ public class HexMapEditor : MonoBehaviour
 			if (roadMode == OptionalToggle.No)
 			{
 				cell.RemoveRoads();
+			}
+			if (walledMode != OptionalToggle.Ignore)
+			{
+				cell.Walled = walledMode == OptionalToggle.Yes;
 			}
 			if (isDrag)
 			{
