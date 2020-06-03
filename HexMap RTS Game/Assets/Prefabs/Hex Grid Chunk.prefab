@@ -842,6 +842,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   walls: {fileID: 830797441627471061}
+  wallTower: {fileID: 8594141914405552479, guid: ae55b255949209347b5c9642163e4537,
+    type: 3}
+  bridge: {fileID: 599779476966905837, guid: ba2aa5195ccd2464fb470a13c0e44724, type: 3}
+  special:
+  - {fileID: 8358180946323703157, guid: 82b8be516058ec3489edf38bfd7f2059, type: 3}
+  - {fileID: 4303128079817232377, guid: 06b0605446ec7d44ea730316f28d4405, type: 3}
+  - {fileID: 4584239963945157768, guid: 119338f0d225f694b8f73c1e1031306b, type: 3}
   urbanCollections:
   - prefabs:
     - {fileID: 395192761981132271, guid: 8971f427de8a19d4da36f1ace66d51ab, type: 3}
