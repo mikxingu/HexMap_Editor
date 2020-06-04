@@ -1,9 +1,12 @@
 ﻿using UnityEngine;
 using UnityEngine.UI;
+using System.IO;
 
 //Classe que monta meu grid, fazendo as triangulações e alterações na mesh principal.
 public class HexGrid : MonoBehaviour
 {
+	public Color[] colors;
+
 	public int seed;
 
 	public int chunkCountX = 4, chunkCountZ = 3;
@@ -25,7 +28,7 @@ public class HexGrid : MonoBehaviour
 	{
 		HexMetrics.noiseSource = noiseSource;
 		HexMetrics.InitializeHashGrid(seed);
-
+		HexMetrics.colors = colors;
 		cellCountX = chunkCountX * HexMetrics.chunkSizeX;
 		cellCountZ = chunkCountZ * HexMetrics.chunkSizeZ;
 
@@ -65,6 +68,7 @@ public class HexGrid : MonoBehaviour
 		{
 			HexMetrics.noiseSource = noiseSource;
 			HexMetrics.InitializeHashGrid(seed);
+			HexMetrics.colors = colors;
 		}
 	}
 
@@ -109,7 +113,6 @@ public class HexGrid : MonoBehaviour
 		HexCell cell = cells[i] = Instantiate<HexCell>(cellPrefab);
 		cell.transform.localPosition = position;
 		cell.coordinates = HexCoordinates.FromOffsetCoordinates(x, z);
-		cell.Color = defaultColor;
 
 		if (x > 0)
 		{
@@ -155,5 +158,25 @@ public class HexGrid : MonoBehaviour
 		int localX = x - chunkX * HexMetrics.chunkSizeX;
 		int localZ = z - chunkZ * HexMetrics.chunkSizeZ;
 		chunk.AddCell(localX + localZ * HexMetrics.chunkSizeX, cell);
+	}
+
+	public void Save (BinaryWriter writer)
+	{
+		for (int i =0; i < cells.Length; i++)
+		{
+			cells[i].Save(writer);
+		}
+	}
+
+	public void Load(BinaryReader reader)
+	{
+		for (int i = 0; i < cells.Length; i++)
+		{
+			cells[i].Load(reader);
+		}
+		for (int i = 0; i <chunks.Length; i++)
+		{
+			chunks[i].Refresh();
+		}
 	}
 }

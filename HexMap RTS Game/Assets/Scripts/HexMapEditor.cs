@@ -1,23 +1,24 @@
 ﻿using UnityEngine;
 using UnityEngine.EventSystems;
+using System.IO;
 
 //Classe com as funções do meu editor de mapa.
 public class HexMapEditor : MonoBehaviour
 {
-	public Color[] colors;
+	//public Color[] colors;
 
 	public HexGrid hexGrid;
 
 	int activeElevation;
 	int activeWaterLevel;
-
+	int activeTerrainTypeIndex;
 	int activeUrbanLevel, activeFarmLevel, activePlantLevel, activeSpecialIndex;
 
-	Color activeColor;
+	//Color activeColor;
 
 	int brushSize;
 
-	bool applyColor;
+	//bool applyColor;
 	bool applyElevation = true;
 	bool applyWaterLevel = true;
 
@@ -31,6 +32,7 @@ public class HexMapEditor : MonoBehaviour
 	HexDirection dragDirection;
 	HexCell previousCell;
 
+	/*
 	public void SelectColor(int index)
 	{
 		applyColor = index >= 0;
@@ -39,7 +41,7 @@ public class HexMapEditor : MonoBehaviour
 			activeColor = colors[index];
 		}
 	}
-
+	*/
 
 
 	public void SetBrushSize(float size)
@@ -77,6 +79,11 @@ public class HexMapEditor : MonoBehaviour
 	public void SetApplySpecialIndex (bool toggle)
 	{
 		applySpecialIndex = toggle;
+	}
+
+	public void SetTerrainTypeIndex (int index)
+	{
+		activeTerrainTypeIndex = index;
 	}
 
 	public void SetApplyWaterlevel(bool toggle)
@@ -124,10 +131,10 @@ public class HexMapEditor : MonoBehaviour
 		activeSpecialIndex = (int)index;
 	}
 
-	void Awake()
+	/*void Awake()
 	{
 		SelectColor(0);
-	}
+	}*/
 
 	void Update()
 	{
@@ -209,10 +216,14 @@ public class HexMapEditor : MonoBehaviour
 	{
 		if (cell)
 		{
-			if (applyColor)
+			if (activeTerrainTypeIndex >= 0)
 			{
-				cell.Color = activeColor;
+				cell.TerrainTypeIndex = activeTerrainTypeIndex;
 			}
+		//	if (applyColor)
+			//{
+				//cell.Color = activeColor;
+			//}
 			if (applyElevation)
 			{
 				cell.Elevation = activeElevation;
@@ -267,6 +278,37 @@ public class HexMapEditor : MonoBehaviour
 		}
 	}
 
-	
+	public void Save()
+	{
+		//MÉTODO RESPONSAVEL POR SALVAR O MAPA.
+		Debug.Log("Saving Map at: " + Application.persistentDataPath);
+		string path = Path.Combine(Application.persistentDataPath, "test.map");
 
+		using (BinaryWriter writer = new BinaryWriter(File.Open(path, FileMode.Create)))
+		{
+			writer.Write(0);
+			hexGrid.Save(writer);
+		}
+	}
+
+
+
+
+	public void Load ()
+	{
+		//MÉTODO RESPONSAVEL POR CARREGAR O MAPA A PARTIR DE UM ARQUIVO NA PASTA DO PROJETO.
+		string path = Path.Combine(Application.persistentDataPath, "test.map");
+		using (BinaryReader reader = new BinaryReader(File.OpenRead(path)))
+		{
+			int header = reader.ReadInt32();
+			if (header == 0)
+			{
+				hexGrid.Load(reader);
+			}
+			else
+			{
+				Debug.LogWarning("Unknown map format " + header);
+			}
+		}
+	}
 }
