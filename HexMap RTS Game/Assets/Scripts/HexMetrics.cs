@@ -4,6 +4,8 @@
 //Classe que gerencia o tamanho do meu Hexagono.
 public static class HexMetrics
 {
+	public static Color[] colors;
+
 	public const float bridgeDesignLenth = 7f;
 	public const float wallTowerThreshold = 0.5f;
 	public const float wallElevationOffset = verticalTerraceStepSize;
