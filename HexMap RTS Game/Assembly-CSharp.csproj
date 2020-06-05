@@ -60,6 +60,8 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Assets\NewMapMenu.cs" />
+    <Compile Include="Assets\SaveLoadItem.cs" />
     <Compile Include="Assets\Scripts\EdgeVertices.cs" />
     <Compile Include="Assets\Scripts\HexCell.cs" />
     <Compile Include="Assets\Scripts\HexCoordinates.cs" />
@@ -75,6 +77,7 @@
     <Compile Include="Assets\Scripts\HexMesh.cs" />
     <Compile Include="Assets\Scripts\HexMetrics.cs" />
     <Compile Include="Assets\Scripts\ListPool.cs" />
+    <Compile Include="Assets\Scripts\SaveLoadMenu.cs" />
     <None Include="Assets\Shaders\WaterShader.shader" />
     <None Include="Assets\Shaders\EstuariesShader.shader" />
     <None Include="Assets\Shaders\RiverShader.shader" />
