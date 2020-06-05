@@ -277,38 +277,4 @@ public class HexMapEditor : MonoBehaviour
 			}
 		}
 	}
-
-	public void Save()
-	{
-		//MÉTODO RESPONSAVEL POR SALVAR O MAPA.
-		Debug.Log("Saving Map at: " + Application.persistentDataPath);
-		string path = Path.Combine(Application.persistentDataPath, "test.map");
-
-		using (BinaryWriter writer = new BinaryWriter(File.Open(path, FileMode.Create)))
-		{
-			writer.Write(0);
-			hexGrid.Save(writer);
-		}
-	}
-
-
-
-
-	public void Load ()
-	{
-		//MÉTODO RESPONSAVEL POR CARREGAR O MAPA A PARTIR DE UM ARQUIVO NA PASTA DO PROJETO.
-		string path = Path.Combine(Application.persistentDataPath, "test.map");
-		using (BinaryReader reader = new BinaryReader(File.OpenRead(path)))
-		{
-			int header = reader.ReadInt32();
-			if (header == 0)
-			{
-				hexGrid.Load(reader);
-			}
-			else
-			{
-				Debug.LogWarning("Unknown map format " + header);
-			}
-		}
-	}
 }
