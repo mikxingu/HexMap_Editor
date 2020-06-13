@@ -61,6 +61,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Assets\Scripts\Editor\HexCoordinatesDrawer.cs" />
+    <Compile Include="Assets\Scripts\Editor\TextureArrayWizard.cs" />
     <Reference Include="Unity.TextMeshPro.Editor">
       <HintPath>C:/Users/Mike/Desktop/GameDev/Projects/HexMap_Game/HexMap RTS Game/Library/ScriptAssemblies/Unity.TextMeshPro.Editor.dll</HintPath>
     </Reference>
