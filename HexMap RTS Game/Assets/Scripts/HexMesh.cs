@@ -1,16 +1,18 @@
 ﻿using UnityEngine;
-using System;
 using System.Collections.Generic;
+using System;
 
 [RequireComponent(typeof(MeshFilter), typeof(MeshRenderer))]
 public class HexMesh : MonoBehaviour
 {
+
 	public bool useCollider, useColors, useUVCoordinates, useUV2Coordinates;
-	
-	[NonSerialized] List<Vector3> vertices;
+	public bool useTerrainTypes;
+
+	[NonSerialized] List<Vector3> vertices, terrainTypes;
 	[NonSerialized] List<Color> colors;
-	[NonSerialized] List<int> triangles;
 	[NonSerialized] List<Vector2> uvs, uv2s;
+	[NonSerialized] List<int> triangles;
 
 	Mesh hexMesh;
 	MeshCollider meshCollider;
@@ -41,6 +43,10 @@ public class HexMesh : MonoBehaviour
 		{
 			uv2s = ListPool<Vector2>.Get();
 		}
+		if (useTerrainTypes)
+		{
+			terrainTypes = ListPool<Vector3>.Get();
+		}
 		triangles = ListPool<int>.Get();
 	}
 
@@ -53,19 +59,24 @@ public class HexMesh : MonoBehaviour
 			hexMesh.SetColors(colors);
 			ListPool<Color>.Add(colors);
 		}
-		hexMesh.SetTriangles(triangles, 0);
-		ListPool<int>.Add(triangles);
-		hexMesh.RecalculateNormals();
 		if (useUVCoordinates)
 		{
 			hexMesh.SetUVs(0, uvs);
 			ListPool<Vector2>.Add(uvs);
 		}
-		if(useUV2Coordinates)
+		if (useUV2Coordinates)
 		{
 			hexMesh.SetUVs(1, uv2s);
 			ListPool<Vector2>.Add(uv2s);
 		}
+		if (useTerrainTypes)
+		{
+			hexMesh.SetUVs(2, terrainTypes);
+			ListPool<Vector3>.Add(terrainTypes);
+		}
+		hexMesh.SetTriangles(triangles, 0);
+		ListPool<int>.Add(triangles);
+		hexMesh.RecalculateNormals();
 		if (useCollider)
 		{
 			meshCollider.sharedMesh = hexMesh;
@@ -94,6 +105,20 @@ public class HexMesh : MonoBehaviour
 		triangles.Add(vertexIndex + 2);
 	}
 
+	public void AddTriangleColor(Color color)
+	{
+		colors.Add(color);
+		colors.Add(color);
+		colors.Add(color);
+	}
+
+	public void AddTriangleColor(Color c1, Color c2, Color c3)
+	{
+		colors.Add(c1);
+		colors.Add(c2);
+		colors.Add(c3);
+	}
+
 	public void AddTriangleUV(Vector2 uv1, Vector2 uv2, Vector3 uv3)
 	{
 		uvs.Add(uv1);
@@ -108,18 +133,11 @@ public class HexMesh : MonoBehaviour
 		uv2s.Add(uv3);
 	}
 
-	public void AddTriangleColor(Color color)
+	public void AddTriangleTerrainTypes(Vector3 types)
 	{
-		colors.Add(color);
-		colors.Add(color);
-		colors.Add(color);
-	}
-
-	public void AddTriangleColor(Color c1, Color c2, Color c3)
-	{
-		colors.Add(c1);
-		colors.Add(c2);
-		colors.Add(c3);
+		terrainTypes.Add(types);
+		terrainTypes.Add(types);
+		terrainTypes.Add(types);
 	}
 
 	public void AddQuad(Vector3 v1, Vector3 v2, Vector3 v3, Vector3 v4)
@@ -137,7 +155,9 @@ public class HexMesh : MonoBehaviour
 		triangles.Add(vertexIndex + 3);
 	}
 
-	public void AddQuadUnperturbed (Vector3 v1, Vector3 v2, Vector3 v3, Vector3 v4)
+	public void AddQuadUnperturbed(
+		Vector3 v1, Vector3 v2, Vector3 v3, Vector3 v4
+	)
 	{
 		int vertexIndex = vertices.Count;
 		vertices.Add(v1);
@@ -150,7 +170,30 @@ public class HexMesh : MonoBehaviour
 		triangles.Add(vertexIndex + 1);
 		triangles.Add(vertexIndex + 2);
 		triangles.Add(vertexIndex + 3);
+	}
 
+	public void AddQuadColor(Color color)
+	{
+		colors.Add(color);
+		colors.Add(color);
+		colors.Add(color);
+		colors.Add(color);
+	}
+
+	public void AddQuadColor(Color c1, Color c2)
+	{
+		colors.Add(c1);
+		colors.Add(c1);
+		colors.Add(c2);
+		colors.Add(c2);
+	}
+
+	public void AddQuadColor(Color c1, Color c2, Color c3, Color c4)
+	{
+		colors.Add(c1);
+		colors.Add(c2);
+		colors.Add(c3);
+		colors.Add(c4);
 	}
 
 	public void AddQuadUV(Vector2 uv1, Vector2 uv2, Vector3 uv3, Vector3 uv4)
@@ -185,27 +228,11 @@ public class HexMesh : MonoBehaviour
 		uv2s.Add(new Vector2(uMax, vMax));
 	}
 
-	public void AddQuadColor(Color color)
+	public void AddQuadTerrainTypes(Vector3 types)
 	{
-		colors.Add(color);
-		colors.Add(color);
-		colors.Add(color);
-		colors.Add(color);
-	}
-
-	public void AddQuadColor(Color c1, Color c2)
-	{
-		colors.Add(c1);
-		colors.Add(c1);
-		colors.Add(c2);
-		colors.Add(c2);
-	}
-
-	public void AddQuadColor(Color c1, Color c2, Color c3, Color c4)
-	{
-		colors.Add(c1);
-		colors.Add(c2);
-		colors.Add(c3);
-		colors.Add(c4);
+		terrainTypes.Add(types);
+		terrainTypes.Add(types);
+		terrainTypes.Add(types);
+		terrainTypes.Add(types);
 	}
 }
