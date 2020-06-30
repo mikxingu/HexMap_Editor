@@ -820,7 +820,7 @@ GameObject:
   - component: {fileID: 125842247}
   - component: {fileID: 125842248}
   m_Layer: 5
-  m_Name: Toggle Blue
+  m_Name: Toggle Mud
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2824,9 +2824,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: 'Blue
-
-'
+  m_Text: Mud
 --- !u!222 &381072021
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -3400,7 +3398,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Orange
+  m_Text: Drt
 --- !u!222 &454631465
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -3926,7 +3924,7 @@ GameObject:
   - component: {fileID: 539560131}
   - component: {fileID: 539560132}
   m_Layer: 5
-  m_Name: Toggle White
+  m_Name: Toggle Snow
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -4897,7 +4895,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: 'Yellow
+  m_Text: 'Snd
 
 '
 --- !u!222 &620597739
@@ -4991,7 +4989,7 @@ GameObject:
   - component: {fileID: 631213845}
   - component: {fileID: 631213846}
   m_Layer: 5
-  m_Name: Toggle Green
+  m_Name: Toggle Grass
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -5977,9 +5975,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: 'Green
-
-'
+  m_Text: Grs
 --- !u!222 &744015870
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -6775,7 +6771,7 @@ GameObject:
   - component: {fileID: 831549125}
   - component: {fileID: 831549126}
   m_Layer: 5
-  m_Name: Toggle Orange
+  m_Name: Toggle Dirt
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -9444,7 +9440,7 @@ GameObject:
   - component: {fileID: 1348792221}
   - component: {fileID: 1348792222}
   m_Layer: 5
-  m_Name: Toggle Yellow
+  m_Name: Toggle Sand
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -11257,8 +11253,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 7.04, y: 0}
-  m_SizeDelta: {x: -25.92, y: 0}
+  m_AnchoredPosition: {x: 10.000007, y: 0}
+  m_SizeDelta: {x: -19.999977, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1696231300
 MonoBehaviour:
@@ -11291,9 +11287,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: 'White
-
-'
+  m_Text: Snw
 --- !u!222 &1696231301
 CanvasRenderer:
   m_ObjectHideFlags: 0
