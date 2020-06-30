@@ -7,6 +7,10 @@ public class HexMapEditor : MonoBehaviour
 {
 	//public Color[] colors;
 
+	public Material terrainMaterial;
+
+	bool editMode;
+
 	public HexGrid hexGrid;
 
 	int activeElevation;
@@ -61,9 +65,21 @@ public class HexMapEditor : MonoBehaviour
 	}
 
 
-	public void ShowUI(bool visible)
+	/*public void ShowUI(bool visible)
 	{
 		hexGrid.ShowUI(visible);
+	}*/
+
+	public void ShowGrid (bool visible)
+	{
+		if (visible)
+		{
+			terrainMaterial.EnableKeyword("GRID_ON");
+		}
+		else
+		{
+			terrainMaterial.DisableKeyword("GRID_ON");
+		}
 	}
 
 	public void SetRiverMode(int mode)
@@ -74,6 +90,12 @@ public class HexMapEditor : MonoBehaviour
 	public void SetRoadMode(int mode)
 	{
 		roadMode = (OptionalToggle)mode;
+	}
+
+	public void SetEditMode (bool toggle)
+	{
+		editMode = toggle;
+		hexGrid.ShowUI(!toggle);
 	}
 
 	public void SetApplySpecialIndex (bool toggle)
@@ -131,10 +153,10 @@ public class HexMapEditor : MonoBehaviour
 		activeSpecialIndex = (int)index;
 	}
 
-	/*void Awake()
+	void Awake()
 	{
-		SelectColor(0);
-	}*/
+		terrainMaterial.DisableKeyword("GRID_ON");
+	}
 
 	void Update()
 	{
@@ -163,7 +185,14 @@ public class HexMapEditor : MonoBehaviour
 			{
 				isDrag = false;
 			}
-			EditCells(currentCell);
+			if (editMode)
+			{
+				EditCells(currentCell);
+			}
+			else
+			{
+				hexGrid.FindDistancesTo(currentCell);
+			}
 			previousCell = currentCell;
 		}
 		else
