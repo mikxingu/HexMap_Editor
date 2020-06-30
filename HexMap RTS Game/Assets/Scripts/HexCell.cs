@@ -221,7 +221,6 @@ public class HexCell : MonoBehaviour {
 		}
 		set {
 			distance = value;
-			UpdateDistanceLabel();
 		}
 	}
 
@@ -234,6 +233,8 @@ public class HexCell : MonoBehaviour {
 			return distance + SearchHeuristic;
 		}
 	}
+
+	public int SearchPhase { get; set; }
 
 	public HexCell NextWithSamePriority { get; set; }
 
@@ -493,9 +494,9 @@ public class HexCell : MonoBehaviour {
 		}
 	}
 
-	void UpdateDistanceLabel () {
+	public void SetLabel (string text) {
 		UnityEngine.UI.Text label = uiRect.GetComponent<Text>();
-		label.text = distance == int.MaxValue ? "" : distance.ToString();
+		label.text = text;
 	}
 
 	public void DisableHighlight () {
