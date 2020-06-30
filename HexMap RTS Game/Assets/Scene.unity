@@ -14345,6 +14345,12 @@ MonoBehaviour:
   seepageFactor: 0.25
   windDirection: 5
   windStrength: 4
+  riverPercentage: 10
+  extaLakeProbability: 0.25
+  lowTemperature: 0
+  highTemperature: 1
+  hemisphere: 0
+  temperatureJitter: 0.1
 --- !u!4 &2056945513
 Transform:
   m_ObjectHideFlags: 0

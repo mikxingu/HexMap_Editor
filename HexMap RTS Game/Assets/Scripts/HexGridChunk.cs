@@ -191,7 +191,8 @@ public class HexGridChunk : MonoBehaviour {
 
 		if (cell.HasRiverThroughEdge(direction)) {
 			TriangulateEstuary(
-				e1, e2, cell.IncomingRiver == direction, indices
+				e1, e2,
+				cell.HasIncomingRiver && cell.IncomingRiver == direction, indices
 			);
 		}
 		else {
