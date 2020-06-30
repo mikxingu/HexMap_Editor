@@ -14333,6 +14333,11 @@ MonoBehaviour:
   waterLevel: 3
   elevationMinimum: -2
   elevationMaximum: 8
+  mapBorderX: 5
+  mapBorderZ: 5
+  regionBorder: 5
+  regionCount: 1
+  erosionPercentage: 50
 --- !u!4 &2056945513
 Transform:
   m_ObjectHideFlags: 0
