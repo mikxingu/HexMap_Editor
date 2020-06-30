@@ -10,6 +10,8 @@ public class HexCell : MonoBehaviour {
 
 	public HexGridChunk chunk;
 
+	public int Index { get; set; }
+
 	public int Elevation {
 		get {
 			return elevation;
@@ -210,8 +212,14 @@ public class HexCell : MonoBehaviour {
 		set {
 			if (terrainTypeIndex != value) {
 				terrainTypeIndex = value;
-				Refresh();
+				ShaderData.RefreshTerrain(this);
 			}
+		}
+	}
+
+	public bool IsVisible {
+		get {
+			return visibility > 0;
 		}
 	}
 
@@ -240,6 +248,8 @@ public class HexCell : MonoBehaviour {
 
 	public HexCell NextWithSamePriority { get; set; }
 
+	public HexCellShaderData ShaderData { get; set; }
+
 	int terrainTypeIndex;
 
 	int elevation = int.MinValue;
@@ -251,6 +261,8 @@ public class HexCell : MonoBehaviour {
 
 	int distance;
 
+	int visibility;
+
 	bool walled;
 
 	bool hasIncomingRiver, hasOutgoingRiver;
@@ -261,6 +273,20 @@ public class HexCell : MonoBehaviour {
 
 	[SerializeField]
 	bool[] roads;
+
+	public void IncreaseVisibility () {
+		visibility += 1;
+		if (visibility == 1) {
+			ShaderData.RefreshVisibility(this);
+		}
+	}
+
+	public void DecreaseVisibility () {
+		visibility -= 1;
+		if (visibility == 0) {
+			ShaderData.RefreshVisibility(this);
+		}
+	}
 
 	public HexCell GetNeighbor (HexDirection direction) {
 		return neighbors[(int)direction];
@@ -469,6 +495,7 @@ public class HexCell : MonoBehaviour {
 
 	public void Load (BinaryReader reader) {
 		terrainTypeIndex = reader.ReadByte();
+		ShaderData.RefreshTerrain(this);
 		elevation = reader.ReadByte();
 		RefreshPosition();
 		waterLevel = reader.ReadByte();
