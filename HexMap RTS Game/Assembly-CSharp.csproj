@@ -87,6 +87,7 @@
      <None Include="Assets\Materials\Water.shader" />
      <None Include="Assets\Materials\HexCellData.cginc" />
      <None Include="Assets\Materials\Water.cginc" />
+     <None Include="Assets\Materials\HexMetrics.cginc" />
  <Reference Include="Unity.TextMeshPro.Editor">
  <HintPath>/home/mike/Desktop/GameDev/HexMap_Game/HexMap RTS Game/Library/ScriptAssemblies/Unity.TextMeshPro.Editor.dll</HintPath>
  </Reference>

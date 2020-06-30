@@ -75,7 +75,7 @@ public class HexMapGenerator : MonoBehaviour {
 	public int riverPercentage = 10;
 
 	[Range(0f, 1f)]
-	public float extaLakeProbability = 0.25f;
+	public float extraLakeProbability = 0.25f;
 
 	[Range(0f, 1f)]
 	public float lowTemperature = 0f;
@@ -135,7 +135,7 @@ public class HexMapGenerator : MonoBehaviour {
 		new Biome(0, 0), new Biome(1, 1), new Biome(1, 2), new Biome(1, 3)
 	};
 
-	public void GenerateMap (int x, int z) {
+	public void GenerateMap (int x, int z, bool wrapping) {
 		Random.State originalRandomState = Random.state;
 		if (!useFixedSeed) {
 			seed = Random.Range(0, int.MaxValue);
@@ -146,7 +146,7 @@ public class HexMapGenerator : MonoBehaviour {
 		Random.InitState(seed);
 
 		cellCount = x * z;
-		grid.CreateMap(x, z);
+		grid.CreateMap(x, z, wrapping);
 		if (searchFrontier == null) {
 			searchFrontier = new HexCellPriorityQueue();
 		}
@@ -174,29 +174,36 @@ public class HexMapGenerator : MonoBehaviour {
 			regions.Clear();
 		}
 
+		int borderX = grid.wrapping ? regionBorder : mapBorderX;
 		MapRegion region;
 		switch (regionCount) {
 		default:
-			region.xMin = mapBorderX;
-			region.xMax = grid.cellCountX - mapBorderX;
+			if (grid.wrapping) {
+				borderX = 0;
+			}
+			region.xMin = borderX;
+			region.xMax = grid.cellCountX - borderX;
 			region.zMin = mapBorderZ;
 			region.zMax = grid.cellCountZ - mapBorderZ;
 			regions.Add(region);
 			break;
 		case 2:
 			if (Random.value < 0.5f) {
-				region.xMin = mapBorderX;
+				region.xMin = borderX;
 				region.xMax = grid.cellCountX / 2 - regionBorder;
 				region.zMin = mapBorderZ;
 				region.zMax = grid.cellCountZ - mapBorderZ;
 				regions.Add(region);
 				region.xMin = grid.cellCountX / 2 + regionBorder;
-				region.xMax = grid.cellCountX - mapBorderX;
+				region.xMax = grid.cellCountX - borderX;
 				regions.Add(region);
 			}
 			else {
-				region.xMin = mapBorderX;
-				region.xMax = grid.cellCountX - mapBorderX;
+				if (grid.wrapping) {
+					borderX = 0;
+				}
+				region.xMin = borderX;
+				region.xMax = grid.cellCountX - borderX;
 				region.zMin = mapBorderZ;
 				region.zMax = grid.cellCountZ / 2 - regionBorder;
 				regions.Add(region);
@@ -206,7 +213,7 @@ public class HexMapGenerator : MonoBehaviour {
 			}
 			break;
 		case 3:
-			region.xMin = mapBorderX;
+			region.xMin = borderX;
 			region.xMax = grid.cellCountX / 3 - regionBorder;
 			region.zMin = mapBorderZ;
 			region.zMax = grid.cellCountZ - mapBorderZ;
@@ -215,22 +222,22 @@ public class HexMapGenerator : MonoBehaviour {
 			region.xMax = grid.cellCountX * 2 / 3 - regionBorder;
 			regions.Add(region);
 			region.xMin = grid.cellCountX * 2 / 3 + regionBorder;
-			region.xMax = grid.cellCountX - mapBorderX;
+			region.xMax = grid.cellCountX - borderX;
 			regions.Add(region);
 			break;
 		case 4:
-			region.xMin = mapBorderX;
+			region.xMin = borderX;
 			region.xMax = grid.cellCountX / 2 - regionBorder;
 			region.zMin = mapBorderZ;
 			region.zMax = grid.cellCountZ / 2 - regionBorder;
 			regions.Add(region);
 			region.xMin = grid.cellCountX / 2 + regionBorder;
-			region.xMax = grid.cellCountX - mapBorderX;
+			region.xMax = grid.cellCountX - borderX;
 			regions.Add(region);
 			region.zMin = grid.cellCountZ / 2 + regionBorder;
 			region.zMax = grid.cellCountZ - mapBorderZ;
 			regions.Add(region);
-			region.xMin = mapBorderX;
+			region.xMin = borderX;
 			region.xMax = grid.cellCountX / 2 - regionBorder;
 			regions.Add(region);
 			break;
@@ -627,7 +634,7 @@ public class HexMapGenerator : MonoBehaviour {
 
 			if (
 				minNeighborElevation >= cell.Elevation &&
-				Random.value < extaLakeProbability
+				Random.value < extraLakeProbability
 			) {
 				cell.WaterLevel = cell.Elevation;
 				cell.Elevation -= 1;
