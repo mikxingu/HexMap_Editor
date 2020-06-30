@@ -68,6 +68,7 @@
      <Compile Include="Assets\Scripts\HexHash.cs" />
      <Compile Include="Assets\Scripts\HexMapCamera.cs" />
      <Compile Include="Assets\Scripts\HexMapEditor.cs" />
+     <Compile Include="Assets\Scripts\HexMapGenerator.cs" />
      <Compile Include="Assets\Scripts\HexMesh.cs" />
      <Compile Include="Assets\Scripts\HexMetrics.cs" />
      <Compile Include="Assets\Scripts\HexUnit.cs" />
