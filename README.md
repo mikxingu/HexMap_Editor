@@ -1,3 +1,6 @@
+![GitHub All Releases](https://img.shields.io/github/downloads/mikxingu/HexMap_Editor/total)
+![GitHub issues](https://img.shields.io/github/issues/mikxingu/HexMap_Editor?color=red)
+![GitHub closed issues](https://img.shields.io/github/issues-closed-raw/mikxingu/HexMap_Editor?color=green)
 # Unity HexMap Editor
 
 This project is an implementation of Catlike Coding Tutorial.
@@ -32,7 +35,7 @@ This base project is based on 27 parts. The following parts have already been do
 - [x] Part15
 - [x] Part16
 - [x] Part17
-- [ ] Part18
+- [x] Part18
 - [ ] Part19
 - [ ] Part20
 - [ ] Part21
@@ -45,8 +48,7 @@ This base project is based on 27 parts. The following parts have already been do
 - [ ] Package 1.0 Released
 
 ## Project images
-Here are some images of the current state of the project on my machine. It should get updated on every pull request I make.
-
+Here are some images of the current state of the project on my machine. They will be updated as the project progresses
 ![image1](./HexMap%20RTS%20Game/1.png)
 ![image2](./HexMap%20RTS%20Game/2.png)
 ![image3](./HexMap%20RTS%20Game/3.png)
