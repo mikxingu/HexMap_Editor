@@ -19,6 +19,8 @@ public class HexCell : MonoBehaviour
 
 	int distance;
 
+	public HexUnit Unit { get; set; }
+
 	public HexCell PathFrom { get; set; }
 
 	public int SearchHeuristic { get; set; }
@@ -421,6 +423,10 @@ public class HexCell : MonoBehaviour
 					neighbor.chunk.Refresh();
 				}
 			}
+			if (Unit)
+			{
+				Unit.ValidateLocation();
+			}
 		}
 	}
 
@@ -441,6 +447,10 @@ public class HexCell : MonoBehaviour
 	void RefreshSelfOnly()
 	{
 		chunk.Refresh();
+		if (Unit)
+		{
+			Unit.ValidateLocation();
+		}
 	}
 
 	public bool HasRoadThroughEdge (HexDirection direction)

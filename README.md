@@ -35,7 +35,7 @@ This base project is based on 27 parts. The following parts have already been do
 - [x] Part15
 - [x] Part16
 - [x] Part17
-- [ ] Part18
+- [x] Part18
 - [ ] Part19
 - [ ] Part20
 - [ ] Part21
