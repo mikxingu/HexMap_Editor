@@ -1,4 +1,6 @@
-![issues](https://img.shields.io/github/issues/mikxingu/HexMap_Editor.svg?longCache=true&style=flat-square)
+![GitHub All Releases](https://img.shields.io/github/downloads/mikxingu/HexMap_Editor/total)
+![GitHub issues](https://img.shields.io/github/issues/mikxingu/HexMap_Editor?color=red)
+![GitHub closed issues](https://img.shields.io/github/issues-closed-raw/mikxingu/HexMap_Editor?color=green)
 # Unity HexMap Editor
 
 This project is an implementation of Catlike Coding Tutorial.
