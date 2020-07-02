@@ -64,6 +64,7 @@
     <Compile Include="Assets\Scripts\EdgeVertices.cs" />
     <Compile Include="Assets\Scripts\HexCell.cs" />
     <Compile Include="Assets\Scripts\HexCellPriorityQueue.cs" />
+    <Compile Include="Assets\Scripts\HexCellShaderData.cs" />
     <Compile Include="Assets\Scripts\HexCoordinates.cs" />
     <Compile Include="Assets\Scripts\HexDirection.cs" />
     <Compile Include="Assets\Scripts\HexEdgeType.cs" />
@@ -83,12 +84,14 @@
     <Compile Include="Assets\Scripts\SaveLoadItem.cs" />
     <Compile Include="Assets\Scripts\SaveLoadMenu.cs" />
     <None Include="Assets\Shaders\Highlight.shader" />
+    <None Include="Assets\Shaders\FeatureShader.shader" />
     <None Include="Assets\Shaders\WaterShader.shader" />
     <None Include="Assets\Shaders\EstuariesShader.shader" />
     <None Include="Assets\Shaders\RiverShader.shader" />
     <None Include="Assets\Shaders\RoadShader.shader" />
     <None Include="Assets\Shaders\Water.cginc" />
     <None Include="Assets\Shaders\Terrain.shader" />
+    <None Include="Assets\Shaders\HexCellData.cginc" />
     <None Include="Assets\Shaders\WaterShoreShader.shader" />
     <Reference Include="Unity.TextMeshPro.Editor">
       <HintPath>C:/Users/Mike/Desktop/GameDev/HexMap_Editor/HexMap RTS Game/Library/ScriptAssemblies/Unity.TextMeshPro.Editor.dll</HintPath>
