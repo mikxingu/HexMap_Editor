@@ -33,6 +33,8 @@ public class HexCell : MonoBehaviour
 
 	public int Index { get; set; }
 
+	public bool IsExplored { get; private set; }
+
 	int visibility;
 
 	public bool IsVisible
@@ -587,8 +589,10 @@ public class HexCell : MonoBehaviour
 			}
 		}
 		writer.Write((byte)roadFlags);
+		writer.Write(IsExplored);
 	}
-	public void Load(BinaryReader reader)
+
+	public void Load(BinaryReader reader, int header)
 	{
 		terrainTypeIndex = reader.ReadByte();
 		ShaderData.RefreshTerrain(this);
@@ -628,13 +632,9 @@ public class HexCell : MonoBehaviour
 		{
 			roads[i] = (roadFlags & (1 << i)) != 0;
 		}
+		IsExplored = header >= 3 ? reader.ReadBoolean() : false;
+		ShaderData.RefreshVisibility(this);
 	}
-
-	/*void UpdateDistanceLabel()
-	{
-		Text label = uiRect.GetComponent<Text>();
-		label.text = distance == int.MaxValue ? "" : distance.ToString();
-	}*/
 
 	public void SetLabel(string text)
 	{
@@ -660,6 +660,7 @@ public class HexCell : MonoBehaviour
 		visibility += 1;
 		if (visibility == 1)
 		{
+			IsExplored = true;
 			ShaderData.RefreshVisibility(this);
 		}
 	}
