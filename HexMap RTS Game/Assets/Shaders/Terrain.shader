@@ -16,6 +16,8 @@
 
 			#pragma multi_compile _ GRID_ON
 
+			#include "HexCellData.cginc"
+
 			UNITY_DECLARE_TEX2DARRAY(_MainTex);
 
 			sampler2D _GridTex;
@@ -28,19 +30,32 @@
 				float4 color : COLOR;
 				float3 worldPos;
 				float3 terrain;
+				float3 visibility;
 			};
 
 			void vert(inout appdata_full v, out Input data)
 	 {
 UNITY_INITIALIZE_OUTPUT(Input, data);
-data.terrain = v.texcoord2.xyz;
+//data.terrain = v.texcoord2.xyz;
+float4 cell0 = GetCellData(v, 0);
+float4 cell1 = GetCellData(v, 1);
+float4 cell2 = GetCellData(v, 2);
+
+data.terrain.x = cell0.w;
+data.terrain.y = cell1.w;
+data.terrain.z = cell2.w;
+
+data.visibility.x = cell0.x;
+data.visibility.y = cell1.x;
+data.visibility.z = cell2.x;
+data.visibility = lerp(0.25, 1, data.visibility);
 }
 
 float4 GetTerrainColor(Input IN, int index)
 {
 float3 uvw = float3(IN.worldPos.xz * 0.02, IN.terrain[index]);
 float4 c = UNITY_SAMPLE_TEX2DARRAY(_MainTex, uvw);
-return c * IN.color[index];
+return c * (IN.color[index] * IN.visibility[index]);
 }
 
 void surf(Input IN, inout SurfaceOutputStandard o)
