@@ -24,7 +24,7 @@ MonoBehaviour:
   m_MinSize: {x: 885, y: 498}
   m_MaxSize: {x: 18004, y: 14048}
   vertical: 0
-  controlID: 17462
+  controlID: 17979
 --- !u!114 &2
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -129,7 +129,7 @@ MonoBehaviour:
   m_MinSize: {x: 608, y: 498}
   m_MaxSize: {x: 14002, y: 14048}
   vertical: 1
-  controlID: 17463
+  controlID: 17946
 --- !u!114 &4
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -155,7 +155,7 @@ MonoBehaviour:
   m_MinSize: {x: 608, y: 224}
   m_MaxSize: {x: 12008, y: 4024}
   vertical: 0
-  controlID: 17440
+  controlID: 17882
 --- !u!114 &5
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -175,8 +175,8 @@ MonoBehaviour:
     y: 0
     width: 254
     height: 596
-  m_MinSize: {x: 200, y: 200}
-  m_MaxSize: {x: 4000, y: 4000}
+  m_MinSize: {x: 202, y: 224}
+  m_MaxSize: {x: 4002, y: 4024}
   m_ActualView: {fileID: 6}
   m_Panes:
   - {fileID: 6}
@@ -213,7 +213,7 @@ MonoBehaviour:
       scrollPos: {x: 0, y: 0}
       m_SelectedIDs: 
       m_LastClickedID: 0
-      m_ExpandedIDs: 0a9ff6ff2c9ff6ff56a0f6ffc2a2f6ff70c8fcff18d5fcff1ed5fcff32f1fcffd602fdffdc02fdff8a9ffeffeafaffffdefbffff0e0d0000ce0d0000001000001c100000fa10000072110000040001002402010002030100
+      m_ExpandedIDs: 0a9ff6ff2c9ff6ff56a0f6ffc2a2f6ff70c8fcff18d5fcff1ed5fcff32f1fcffd602fdffdc02fdff8a9ffeffeafaffffdefbffff0e0d0000ce0d0000001000001c100000fa100000721100000400010024020100020301007a030100
       m_RenameOverlay:
         m_UserAcceptedRename: 0
         m_Name: 
@@ -256,8 +256,8 @@ MonoBehaviour:
     y: 0
     width: 506
     height: 596
-  m_MinSize: {x: 204, y: 224}
-  m_MaxSize: {x: 4004, y: 4024}
+  m_MinSize: {x: 200, y: 200}
+  m_MaxSize: {x: 4000, y: 4000}
   m_ActualView: {fileID: 8}
   m_Panes:
   - {fileID: 8}
@@ -330,9 +330,9 @@ MonoBehaviour:
     speed: 2
     m_Value: {x: -0.028803155, y: -0.017393697, z: 0.0005013689, w: -0.99943364}
   m_Size:
-    m_Target: 822.92566
+    m_Target: 716.75494
     speed: 2
-    m_Value: 822.92566
+    m_Value: 716.75494
   m_Ortho:
     m_Target: 0
     speed: 2
@@ -456,8 +456,8 @@ MonoBehaviour:
     y: 0
     width: 647
     height: 596
-  m_MinSize: {x: 204, y: 224}
-  m_MaxSize: {x: 4004, y: 4024}
+  m_MinSize: {x: 200, y: 200}
+  m_MaxSize: {x: 4000, y: 4000}
   m_ActualView: {fileID: 2}
   m_Panes:
   - {fileID: 2}
@@ -487,7 +487,7 @@ MonoBehaviour:
   m_MinSize: {x: 332, y: 274}
   m_MaxSize: {x: 14002, y: 10024}
   vertical: 0
-  controlID: 17464
+  controlID: 17947
 --- !u!114 &13
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -507,8 +507,8 @@ MonoBehaviour:
     y: 0
     width: 829
     height: 361
-  m_MinSize: {x: 230, y: 250}
-  m_MaxSize: {x: 10000, y: 10000}
+  m_MinSize: {x: 232, y: 274}
+  m_MaxSize: {x: 10002, y: 10024}
   m_ActualView: {fileID: 14}
   m_Panes:
   - {fileID: 14}
@@ -552,19 +552,19 @@ MonoBehaviour:
     m_ShowAllHits: 0
     m_SearchArea: 1
     m_Folders:
-    - Assets/Materials
+    - Assets/Scripts
   m_ViewMode: 1
   m_StartGridSize: 64
   m_LastFolders:
-  - Assets/Materials
+  - Assets/Scripts
   m_LastFoldersGridSize: -1
   m_LastProjectPath: C:\Users\Mike\Desktop\GameDev\HexMap_Editor\HexMap RTS Game
   m_LockTracker:
     m_IsLocked: 0
   m_FolderTreeState:
     scrollPos: {x: 0, y: 0}
-    m_SelectedIDs: 020a0000
-    m_LastClickedID: 2562
+    m_SelectedIDs: 8e0b0000
+    m_LastClickedID: 2958
     m_ExpandedIDs: 00000000ea09000000ca9a3b
     m_RenameOverlay:
       m_UserAcceptedRename: 0
@@ -618,8 +618,8 @@ MonoBehaviour:
       m_Icon: {fileID: 0}
       m_ResourceFile: 
   m_ListAreaState:
-    m_SelectedInstanceIDs: 2a000100
-    m_LastClickedInstanceID: 65578
+    m_SelectedInstanceIDs: 6e0c0000
+    m_LastClickedInstanceID: 3182
     m_HadKeyboardFocusLastEvent: 1
     m_ExpandedInstanceIDs: c6230000e8300000d22e0000de2e0000b856010000000000c4050000
     m_RenameOverlay:
@@ -667,8 +667,8 @@ MonoBehaviour:
     y: 0
     width: 578
     height: 361
-  m_MinSize: {x: 104, y: 124}
-  m_MaxSize: {x: 4004, y: 4024}
+  m_MinSize: {x: 100, y: 100}
+  m_MaxSize: {x: 4000, y: 4000}
   m_ActualView: {fileID: 16}
   m_Panes:
   - {fileID: 16}
