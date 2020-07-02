@@ -17,7 +17,7 @@ The "reference" branch contains the original code for each section of the tutori
 ---
 
 ### Progress Tracker
-This base project is based on 27 parts. The following parts have already been done:
+This project is based on 27 parts. The following parts have already been completed:
 - [x] Part1
 - [x] Part2
 - [x] Part3
@@ -45,10 +45,11 @@ This base project is based on 27 parts. The following parts have already been do
 - [ ] Part25
 - [ ] Part26
 - [ ] Part27
-- [ ] Package 1.0 Released
+- [ ] Bugfix / 0 issues
+- [ ] Release version 1.0
 
 ## Project images
-Here are some images of the current state of the project on my machine. They will be updated as the project progresses
+Here are some images of the current state of the project on my machine. They will get updated as the project progresses
 ![image1](./HexMap%20RTS%20Game/1.png)
 ![image2](./HexMap%20RTS%20Game/2.png)
 ![image3](./HexMap%20RTS%20Game/3.png)
