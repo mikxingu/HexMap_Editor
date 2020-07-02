@@ -38,8 +38,8 @@ This project is based on 27 parts. The following parts have already been complet
 - [x] Part18
 - [x] Part19
 - [x] Part20
-- [ ] Part21
-- [ ] Part22
+- [x] Part21
+- [x] Part22
 - [ ] Part23
 - [ ] Part24
 - [ ] Part25

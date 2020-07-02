@@ -33,13 +33,38 @@ public class HexCell : MonoBehaviour
 
 	public int Index { get; set; }
 
+	public bool IsExplored
+	{
+		get
+		{
+			return explored && Explorable;
+		}
+		private set
+		{
+			explored = value;
+		}
+	}
+
+	bool explored;
+
+	public bool Explorable { get; set; }
+
+	public int ViewElevation
+	{
+		get
+		{
+			return elevation >= waterLevel ? elevation : waterLevel;
+		}
+
+	}
+
 	int visibility;
 
 	public bool IsVisible
 	{
 		get
 		{
-			return visibility > 0;
+			return visibility > 0 && Explorable;
 		}
 	}
 
@@ -126,8 +151,12 @@ public class HexCell : MonoBehaviour
 			{
 				return;
 			}
-
+			int originalViewElevation = ViewElevation;
 			elevation = value;
+			if (ViewElevation != originalViewElevation)
+			{
+				ShaderData.ViewElevationChanged();
+			}
 			RefreshPosition();
 			ValidateRivers();
 
@@ -256,7 +285,12 @@ public class HexCell : MonoBehaviour
 			{
 				return;
 			}
+			int originalViewElevation = ViewElevation;
 			waterLevel = value;
+			if (ViewElevation != originalViewElevation)
+			{
+				ShaderData.ViewElevationChanged();
+			}
 			ValidateRivers();
 			Refresh();
 		}
@@ -587,8 +621,10 @@ public class HexCell : MonoBehaviour
 			}
 		}
 		writer.Write((byte)roadFlags);
+		writer.Write(IsExplored);
 	}
-	public void Load(BinaryReader reader)
+
+	public void Load(BinaryReader reader, int header)
 	{
 		terrainTypeIndex = reader.ReadByte();
 		ShaderData.RefreshTerrain(this);
@@ -628,13 +664,9 @@ public class HexCell : MonoBehaviour
 		{
 			roads[i] = (roadFlags & (1 << i)) != 0;
 		}
+		IsExplored = header >= 3 ? reader.ReadBoolean() : false;
+		ShaderData.RefreshVisibility(this);
 	}
-
-	/*void UpdateDistanceLabel()
-	{
-		Text label = uiRect.GetComponent<Text>();
-		label.text = distance == int.MaxValue ? "" : distance.ToString();
-	}*/
 
 	public void SetLabel(string text)
 	{
@@ -660,6 +692,7 @@ public class HexCell : MonoBehaviour
 		visibility += 1;
 		if (visibility == 1)
 		{
+			IsExplored = true;
 			ShaderData.RefreshVisibility(this);
 		}
 	}
@@ -669,6 +702,15 @@ public class HexCell : MonoBehaviour
 		visibility -= 1;
 		if (visibility == 0)
 		{
+			ShaderData.RefreshVisibility(this);
+		}
+	}
+
+	public void ResetVisibility()
+	{
+		if (visibility > 0)
+		{
+			visibility = 0;
 			ShaderData.RefreshVisibility(this);
 		}
 	}
