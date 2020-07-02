@@ -84,6 +84,7 @@
     <Compile Include="Assets\Scripts\SaveLoadItem.cs" />
     <Compile Include="Assets\Scripts\SaveLoadMenu.cs" />
     <None Include="Assets\Shaders\Highlight.shader" />
+    <None Include="Assets\Shaders\FeatureShader.shader" />
     <None Include="Assets\Shaders\WaterShader.shader" />
     <None Include="Assets\Shaders\EstuariesShader.shader" />
     <None Include="Assets\Shaders\RiverShader.shader" />
