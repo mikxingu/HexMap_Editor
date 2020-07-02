@@ -40,7 +40,7 @@ This project is based on 27 parts. The following parts have already been complet
 - [x] Part20
 - [x] Part21
 - [x] Part22
-- [ ] Part23
+- [x] Part23
 - [ ] Part24
 - [ ] Part25
 - [ ] Part26
