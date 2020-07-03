@@ -3628,8 +3628,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b06cef0c502624c4c8e9a06dac79dc4a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  stickMinZoom: -250
-  stickMaxZoom: -45
+  stickMinZoom: -900
+  stickMaxZoom: -50
   swivelMinZoom: 90
   swivelMaxZoom: 45
   moveSpeedMinZoom: 400
@@ -6058,6 +6058,21 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   grid: {fileID: 427400029}
   jitterProbability: 0.25
+  chunkSizeMin: 30
+  chunkSizeMax: 100
+  landPercentage: 50
+  waterLevel: 3
+  highRiseProbability: 0.25
+  sinkProbability: 0.2
+  elevationMinimum: -2
+  elevationMaximum: 8
+  mapBorderX: 0
+  mapBorderZ: 0
+  regionBorder: 5
+  regionCount: 2
+  erosionPercentage: 75
+  seed: 0
+  useFixedSeed: 0
 --- !u!4 &711369023
 Transform:
   m_ObjectHideFlags: 0
