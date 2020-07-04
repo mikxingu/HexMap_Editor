@@ -4,7 +4,7 @@
 # Unity HexMap Editor
 
 This project is an implementation of Catlike Coding Tutorial.
-The original tutorial can be found at (https://catlikecoding.com/unity/tutorials/hex-map/).
+The original tutorial can be found [here](https://catlikecoding.com/unity/tutorials/hex-map/).
 
 ![HEXMAP](./HexMap%20RTS%20Game/logo.jpg)
 
@@ -14,12 +14,49 @@ Any new ideas or implementations will be stored in another repository.
 
 The "reference" branch contains the original code for each section of the tutorial.
 
-## Usage
+### Usage
 
-To be written
+Go to the [Releases](https://github.com/mikxingu/HexMap_Editor/releases) page.
+Download the desired version for your system (Windows / Linux).
+
+#### Windows Users
+Extract the downloaded ZIP file.
+Go to the extracted folder, and execute the "HexMap Editor.exe".
+Enjoy!
+
+#### Linux Users
+Extract the downloaded ZIP file.
+Go to the extracted folder, and open it on the terminal. 
+Once in the terminal, execute the "chmod x+ v1.0.x86_64"
+Alternatively, right-click on the executable file, open the properties menu,
+go to the "permissions" tab and check the "Allow executing file as a program" checkbox.
+Execute the program. Enjoy!
+
+
+### Controls
+In the editor, use the following controls:
+
+* Arrow keys or WSAD to move the camera.
+* Use Q and E to rotate the camera.
+* Mouse Scrollwheel to zoom in/out.
+* Left Click: 
+	* Apply changes (Edit Mode).
+	* Select Unit (Navigation Mode).
+
+* Right Click:
+	* Move unit (Navigation Mode).
+
+* U key: Spawn Unit (Edit Mode).
+* LeftShit + U : Delete Unit (Edit Mode.)
 
 ---
+## Project images
+Here are some images of the current state of the project on my machine. They will get updated as the project progresses
+![image1](./HexMap%20RTS%20Game/1.png)
+![image2](./HexMap%20RTS%20Game/2.png)
+![image3](./HexMap%20RTS%20Game/3.png)
 
+---
 ### Progress Tracker
 This project is based on 27 parts. The following parts have already been completed:
 - [x] Part1
@@ -51,9 +88,3 @@ This project is based on 27 parts. The following parts have already been complet
 - [x] Part27
 - [x] Bugfix / 0 issues
 - [x] Release version 1.0
-
-## Project images
-Here are some images of the current state of the project on my machine. They will get updated as the project progresses
-![image1](./HexMap%20RTS%20Game/1.png)
-![image2](./HexMap%20RTS%20Game/2.png)
-![image3](./HexMap%20RTS%20Game/3.png)
