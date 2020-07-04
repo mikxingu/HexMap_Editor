@@ -28,13 +28,11 @@ public class HexUnit : MonoBehaviour
 		{
 			if (location)
 			{
-				//location.DecreaseVisibility();
 				Grid.DecreaseVisibility(location, VisionRange);
 				location.Unit = null;
 			}
 			location = value;
 			value.Unit = this;
-			//value.IncreaseVisibility();
 			Grid.IncreaseVisibility(value, VisionRange);
 			transform.localPosition = value.Position;
 			Grid.MakeChildOfColumn(transform, value.ColumnIndex);
@@ -81,7 +79,6 @@ public class HexUnit : MonoBehaviour
 	{
 		if (location)
 		{
-			//location.DecreaseVisibility();
 			Grid.DecreaseVisibility(location, VisionRange);
 		}
 		location.Unit = null;
@@ -109,7 +106,6 @@ public class HexUnit : MonoBehaviour
 	
 	public void Travel (List<HexCell> path)
 	{
-		//	Location = path[path.Count - 1];
 		location.Unit = null;
 		location = path[path.Count - 1];
 		location.Unit = this;
@@ -122,7 +118,6 @@ public class HexUnit : MonoBehaviour
 	{
 		Vector3 a, b, c = pathToTravel[0].Position;
 		yield return LookAt(pathToTravel[1].Position);
-		//Grid.DecreaseVisibility(currentTravelLocation ? currentTravelLocation : pathToTravel[0], VisionRange);
 		if (!currentTravelLocation)
 		{
 			currentTravelLocation = pathToTravel[0];
@@ -136,9 +131,7 @@ public class HexUnit : MonoBehaviour
 			currentTravelLocation = pathToTravel[i];
 			a = c;
 			b = pathToTravel[i - 1].Position;
-			//c = (b + currentTravelLocation.Position) * 0.5f;
-			//Grid.IncreaseVisibility(pathToTravel[i], VisionRange);
-
+			
 			int nextColumn = currentTravelLocation.ColumnIndex;
 			if (currentColumn != nextColumn)
 			{
