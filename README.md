@@ -14,6 +14,10 @@ Any new ideas or implementations will be stored in another repository.
 
 The "reference" branch contains the original code for each section of the tutorial.
 
+## Usage
+
+To be written
+
 ---
 
 ### Progress Tracker
@@ -45,8 +49,8 @@ This project is based on 27 parts. The following parts have already been complet
 - [x] Part25
 - [x] Part26
 - [x] Part27
-- [ ] Bugfix / 0 issues
-- [ ] Release version 1.0
+- [x] Bugfix / 0 issues
+- [x] Release version 1.0
 
 ## Project images
 Here are some images of the current state of the project on my machine. They will get updated as the project progresses
