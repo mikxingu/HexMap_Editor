@@ -43,7 +43,7 @@ This project is based on 27 parts. The following parts have already been complet
 - [x] Part23
 - [x] Part24
 - [x] Part25
-- [ ] Part26
+- [x] Part26
 - [ ] Part27
 - [ ] Bugfix / 0 issues
 - [ ] Release version 1.0
