@@ -87,7 +87,6 @@ public class HexCell : MonoBehaviour
 		set
 		{
 			distance = value;
-			//UpdateDistanceLabel();
 		}
 	}
 
@@ -135,7 +134,6 @@ public class HexCell : MonoBehaviour
 			if (terrainTypeIndex != value)
 			{
 				terrainTypeIndex = value;
-				//Refresh();
 				ShaderData.RefreshTerrain(this);
 			}
 		}
@@ -589,8 +587,6 @@ public class HexCell : MonoBehaviour
 		writer.Write((byte)specialIndex);
 		writer.Write(walled);
 
-		//writer.Write(hasIncomingRiver);
-		//writer.Write((byte)incomingRiver);
 
 		if (hasIncomingRiver)
 		{
@@ -600,9 +596,6 @@ public class HexCell : MonoBehaviour
 		{
 			writer.Write((byte)0);
 		}
-
-		//writer.Write(hasOutgoingRiver);
-		//writer.Write((byte)outgoingRiver);
 
 		if (hasOutgoingRiver)
 		{
@@ -616,7 +609,6 @@ public class HexCell : MonoBehaviour
 		int roadFlags = 0;
 		for (int i = 0; i < roads.Length; i++)
 		{
-			//writer.Write(roads[i]);
 			if (roads[i])
 			{
 				roadFlags |= 1 << i;

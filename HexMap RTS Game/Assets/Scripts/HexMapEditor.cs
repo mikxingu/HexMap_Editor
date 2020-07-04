@@ -5,26 +5,19 @@ using System.IO;
 //Classe com as funções do meu editor de mapa.
 public class HexMapEditor : MonoBehaviour
 {
-	//public Color[] colors;
 
 	public Material terrainMaterial;
 
-	//bool editMode;
-
 	public HexGrid hexGrid;
-
-//	public HexUnit unitPrefab;
 
 	int activeElevation;
 	int activeWaterLevel;
 	int activeTerrainTypeIndex;
 	int activeUrbanLevel, activeFarmLevel, activePlantLevel, activeSpecialIndex;
 
-	//Color activeColor;
 
 	int brushSize;
 
-	//bool applyColor;
 	bool applyElevation = true;
 	bool applyWaterLevel = true;
 
@@ -36,20 +29,7 @@ public class HexMapEditor : MonoBehaviour
 
 	bool isDrag;
 	HexDirection dragDirection;
-	//HexCell previousCell, searchFromCell, searchToCell;
 	HexCell previousCell;
-
-	/*
-	public void SelectColor(int index)
-	{
-		applyColor = index >= 0;
-		if (applyColor)
-		{
-			activeColor = colors[index];
-		}
-	}
-	*/
-
 
 	public void SetBrushSize(float size)
 	{
@@ -66,12 +46,6 @@ public class HexMapEditor : MonoBehaviour
 	{
 		applyElevation = toggle;
 	}
-
-
-	/*public void ShowUI(bool visible)
-	{
-		hexGrid.ShowUI(visible);
-	}*/
 
 	public void ShowGrid (bool visible)
 	{
@@ -97,8 +71,6 @@ public class HexMapEditor : MonoBehaviour
 
 	public void SetEditMode (bool toggle)
 	{
-		//editMode = toggle;
-		//hexGrid.ShowUI(!toggle);
 		enabled = toggle;
 	}
 
@@ -189,40 +161,12 @@ public class HexMapEditor : MonoBehaviour
 		previousCell = null;
 	}
 
-	/*
-if (Input.GetMouseButton(0) && !EventSystem.current.IsPointerOverGameObject())
-{
-	HandleInput();
-}
-else
-{
-	previousCell = null;
-}*/
-	/*
-	if (!EventSystem.current.IsPointerOverGameObject())
-	{
-		if (Input.GetMouseButton(0))
-		{
-			HandleInput();
-			return;
-		}
-		if (Input.GetKeyDown(KeyCode.U))
-		{
-			CreateUnit();
-			return;
-		}
-	}
-	previousCell = null;*/
-
 	void CreateUnit ()
 	{
 		HexCell cell = GetCellUnderCursor();
 		if (cell && !cell.Unit)
 		{
-			//HexUnit unit = Instantiate(unitPrefab);
-			//unit.transform.SetParent(hexGrid.transform, false);
-			//unit.Location = cell;
-			//unit.Orientation = Random.Range(0f, 360f);
+			
 			hexGrid.AddUnit(
 				Instantiate(HexUnit.unitPrefab), cell, Random.Range(0f, 360f));
 		}
@@ -233,7 +177,6 @@ else
 		HexCell cell = GetCellUnderCursor();
 		if (cell && cell. Unit)
 		{
-			//cell.Unit.Die();
 			hexGrid.RemoveUnit(cell.Unit);
 		}
 	}
@@ -315,10 +258,6 @@ else
 			{
 				cell.TerrainTypeIndex = activeTerrainTypeIndex;
 			}
-		//	if (applyColor)
-			//{
-				//cell.Color = activeColor;
-			//}
 			if (applyElevation)
 			{
 				cell.Elevation = activeElevation;

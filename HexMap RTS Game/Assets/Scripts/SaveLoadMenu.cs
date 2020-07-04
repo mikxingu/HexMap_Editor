@@ -73,9 +73,7 @@ public class SaveLoadMenu : MonoBehaviour
 
 	public void Save(string path)
 	{
-		//MÉTODO RESPONSAVEL POR SALVAR O MAPA.
 		Debug.Log("Saving Map at: " + Application.persistentDataPath);
-		//string path = Path.Combine(Application.persistentDataPath, "test.map");
 
 		using (BinaryWriter writer = new BinaryWriter(File.Open(path, FileMode.Create)))
 		{
@@ -105,7 +103,6 @@ public class SaveLoadMenu : MonoBehaviour
 
 	public void Load(string path)
 	{
-		//MÉTODO RESPONSAVEL POR CARREGAR O MAPA A PARTIR DE UM ARQUIVO NA PASTA DO PROJETO.
 		if (!File.Exists(path))
 		{
 			Debug.LogError("File does not exist " + path);

@@ -906,8 +906,6 @@ public class HexGridChunk : MonoBehaviour
 
 		terrain.AddTriangle(begin, v3, v4);
 		terrain.AddTriangleCellData(indices, weights1, w3, w4);
-		//terrain.AddTriangleColor(weights1, w3, w4);
-		//terrain.AddTriangleTerrainTypes(indices);
 
 		for (int i = 2; i < HexMetrics.terraceSteps; i++)
 		{
@@ -921,14 +919,10 @@ public class HexGridChunk : MonoBehaviour
 			w4 = HexMetrics.TerraceLerp(weights1, weights3, i);
 			terrain.AddQuad(v1, v2, v3, v4);
 			terrain.AddQuadCellData(indices, w1, w2, w3, w4);
-			//terrain.AddQuadColor(w1, w2, w3, w4);
-			//terrain.AddQuadTerrainTypes(indices);
 		}
 
 		terrain.AddQuad(v3, v4, left, right);
 		terrain.AddQuadCellData(indices, w3, w4, weights2, weights3);
-		//terrain.AddQuadColor(w3, w4, weights2, weights3);
-		//terrain.AddQuadTerrainTypes(indices);
 	}
 
 	void TriangulateCornerTerracesCliff(
@@ -967,8 +961,6 @@ public class HexGridChunk : MonoBehaviour
 				HexMetrics.Perturb(left), HexMetrics.Perturb(right), boundary
 			);
 			terrain.AddTriangleCellData(indices, weights2, weights3, boundaryWeights);
-			//terrain.AddTriangleColor(weights2, weights3, boundaryWeights);
-			//terrain.AddTriangleTerrainTypes(indices);
 		}
 	}
 
@@ -1007,8 +999,6 @@ public class HexGridChunk : MonoBehaviour
 			terrain.AddTriangleUnperturbed(
 				HexMetrics.Perturb(left), HexMetrics.Perturb(right), boundary);
 			terrain.AddTriangleCellData(indices, weights2, weights3, boundaryWeights);
-			//terrain.AddTriangleColor(weights2, weights3, boundaryWeights);
-			//terrain.AddTriangleTerrainTypes(indices);
 		}
 	}
 
@@ -1023,8 +1013,6 @@ public class HexGridChunk : MonoBehaviour
 
 		terrain.AddTriangleUnperturbed(HexMetrics.Perturb(begin), v2, boundary);
 		terrain.AddTriangleCellData(indices, beginWeights, w2, boundaryWeights);
-		//terrain.AddTriangleColor(beginWeights, w2, boundaryWeights);
-		//terrain.AddTriangleTerrainTypes(indices);
 
 		for (int i = 2; i < HexMetrics.terraceSteps; i++)
 		{
@@ -1034,14 +1022,10 @@ public class HexGridChunk : MonoBehaviour
 			w2 = HexMetrics.TerraceLerp(beginWeights, leftWeights, i);
 			terrain.AddTriangleUnperturbed(v1, v2, boundary);
 			terrain.AddTriangleCellData(indices, w1, w2, boundaryWeights);
-			//terrain.AddTriangleColor(w1, w2, boundaryWeights);
-			//terrain.AddTriangleTerrainTypes(indices);
 		}
 
 		terrain.AddTriangleUnperturbed(v2, HexMetrics.Perturb(left), boundary);
 		terrain.AddTriangleCellData(indices, w2, leftWeights, boundaryWeights);
-		//terrain.AddTriangleColor(w2, leftWeights, boundaryWeights);
-		//terrain.AddTriangleTerrainTypes(indices);
 	}
 
 	void TriangulateEdgeFan(Vector3 center, EdgeVertices edge, float index)
@@ -1057,14 +1041,7 @@ public class HexGridChunk : MonoBehaviour
 		terrain.AddTriangleCellData(indices, weights1);
 		terrain.AddTriangleCellData(indices, weights1);
 		terrain.AddTriangleCellData(indices, weights1);
-
-		/*
-		Vector3 types;
-		types.x = types.y = types.z = type;
-		terrain.AddTriangleTerrainTypes(types);
-		terrain.AddTriangleTerrainTypes(types);
-		terrain.AddTriangleTerrainTypes(types);
-		terrain.AddTriangleTerrainTypes(types);*/
+		
 	}
 
 	void TriangulateEdgeStrip(
