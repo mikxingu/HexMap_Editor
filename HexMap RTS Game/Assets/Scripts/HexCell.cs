@@ -33,6 +33,8 @@ public class HexCell : MonoBehaviour
 
 	public int Index { get; set; }
 
+	public int ColumnIndex { get; set; }
+
 	public bool IsExplored
 	{
 		get

@@ -8,7 +8,7 @@
 		SubShader{
 			Tags { "RenderType" = "Transparent" "Queue" = "Transparent" }
 			LOD 200
-
+			//test
 			CGPROGRAM
 			#pragma surface surf StandardSpecular alpha vertex:vert
 			#pragma target 3.0
