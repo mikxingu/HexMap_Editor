@@ -258,7 +258,7 @@ public class HexGridChunk : MonoBehaviour
 			{
 				center3.x -= HexMetrics.wrapSize * HexMetrics.innerDiameter;
 			}
-			Vector3 v3 = nextNeighbor.Position + (nextNeighbor.IsUnderwater ?
+			Vector3 v3 = center3 + (nextNeighbor.IsUnderwater ?
 				HexMetrics.GetFirstWaterCorner(direction.Previous()) :
 				HexMetrics.GetFirstSolidCorner(direction.Previous()));
 			v3.y = center.y;
