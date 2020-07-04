@@ -17,7 +17,7 @@ public class SaveLoadMenu : MonoBehaviour
 
 	public InputField nameInput;
 
-	const int mapFileVersion = 4;
+	const int mapFileVersion = 5;
 
 	string GetSelectedPath ()
 	{

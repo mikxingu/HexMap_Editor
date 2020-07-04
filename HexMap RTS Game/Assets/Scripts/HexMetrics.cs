@@ -4,6 +4,8 @@
 //Classe que gerencia o tamanho do meu Hexagono.
 public static class HexMetrics
 {
+	public static int wrapSize;
+
 	public static Color[] colors;
 
 	public const float bridgeDesignLenth = 7f;
@@ -29,6 +31,8 @@ public static class HexMetrics
 	public const float outerRadius = 10f;
 
 	public const float innerRadius = outerRadius * outerToInner;
+
+	public const float innerDiameter = innerRadius * 2f;
 
 	public const float solidFactor = 0.8f;
 
@@ -59,6 +63,14 @@ public static class HexMetrics
 	public const float waterFactor = 0.6f;
 
 	public const float waterBlendFactor = 1f - waterFactor;
+
+	public static bool Wrapping
+	{
+		get
+		{
+			return wrapSize > 0;
+		}
+	}
 
 	static float[][] featureThresholds =
 	{
@@ -165,10 +177,22 @@ public static class HexMetrics
 
 	public static Vector4 SampleNoise(Vector3 position)
 	{
-		return noiseSource.GetPixelBilinear(position.x * noiseScale,
-											position.z * noiseScale);
-	}
+		Vector4 sample = noiseSource.GetPixelBilinear(
+								position.x * noiseScale,
+								position.z * noiseScale);
 
+		if (Wrapping && position.x < innerDiameter * 1.5f)
+		{
+			Vector4 sample2 = noiseSource.GetPixelBilinear(
+				(position.x + wrapSize * innerDiameter) * noiseScale,
+				 position.z * noiseScale);
+
+			sample = Vector4.Lerp(sample2, sample, position.x * 
+				(1f / innerDiameter) - 0.5f);
+		}
+
+		return sample;
+	}
 
 	public static void InitializeHashGrid(int seed)
 	{

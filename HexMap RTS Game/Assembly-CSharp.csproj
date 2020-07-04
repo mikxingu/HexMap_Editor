@@ -84,6 +84,7 @@
     <Compile Include="Assets\Scripts\NewMapMenu.cs" />
     <Compile Include="Assets\Scripts\SaveLoadItem.cs" />
     <Compile Include="Assets\Scripts\SaveLoadMenu.cs" />
+    <None Include="Assets\Shaders\HexMetrics.cginc" />
     <None Include="Assets\Shaders\Highlight.shader" />
     <None Include="Assets\Shaders\FeatureShader.shader" />
     <None Include="Assets\Shaders\WaterShader.shader" />

@@ -12,13 +12,14 @@
 			}
 			LOD 200
 			Offset -1, -1
-
+			//test
 			CGPROGRAM
 			#pragma surface surf StandardSpecular fullforwardshadows decal:blend vertex:vert
 			#pragma target 3.0
 
 			#pragma multi_compile _ HEX_MAP_EDIT_MODE
 
+			#include "HexMetrics.cginc"
 			#include "HexCellData.cginc"
 
 			sampler2D _MainTex;
@@ -47,7 +48,7 @@ data.visibility.y = cell0.y * v.color.x + cell1.y * v.color.y;
 
 void surf(Input IN, inout SurfaceOutputStandardSpecular o)
 {
-float4 noise = tex2D(_MainTex, IN.worldPos.xz * 0.025);
+float4 noise = tex2D(_MainTex, IN.worldPos.xz * (3 * TILING_SCALE));
 fixed4 c = _Color * ((noise.y * 0.75 + 0.25) * IN.visibility.x);
 float blend = IN.uv_MainTex.x;
 blend *= noise.x + 0.5;
@@ -62,5 +63,6 @@ o.Alpha = blend * explored;
 }
 ENDCG
 		}
+			
 			FallBack "Diffuse"
 }

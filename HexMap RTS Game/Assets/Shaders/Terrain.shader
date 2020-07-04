@@ -11,7 +11,7 @@
 		SubShader{
 			Tags { "RenderType" = "Opaque" }
 			LOD 200
-
+			//test
 			CGPROGRAM
 			#pragma surface surf StandardSpecular fullforwardshadows vertex:vert
 			#pragma target 3.5
@@ -21,6 +21,7 @@
 			#pragma multi_compile _ HEX_MAP_EDIT_MODE
 			#pragma shader_feature SHOW_MAP_DATA
 
+			#include "HexMetrics.cginc"
 			#include "HexCellData.cginc"
 
 			UNITY_DECLARE_TEX2DARRAY(_MainTex);
@@ -45,7 +46,6 @@
 			void vert(inout appdata_full v, out Input data)
 	 {
 UNITY_INITIALIZE_OUTPUT(Input, data);
-//data.terrain = v.texcoord2.xyz;
 float4 cell0 = GetCellData(v, 0);
 float4 cell1 = GetCellData(v, 1);
 float4 cell2 = GetCellData(v, 2);
@@ -69,7 +69,7 @@ cell2.z * v.color.z;
 
 float4 GetTerrainColor(Input IN, int index)
 {
-float3 uvw = float3(IN.worldPos.xz * 0.02, IN.terrain[index]);
+float3 uvw = float3(IN.worldPos.xz * (2 * TILING_SCALE), IN.terrain[index]);
 float4 c = UNITY_SAMPLE_TEX2DARRAY(_MainTex, uvw);
 return c * (IN.color[index] * IN.visibility[index]);
 }
