@@ -47,9 +47,12 @@
     <ImplicitlyExpandDesignTimeFacades>false</ImplicitlyExpandDesignTimeFacades>
   </PropertyGroup>
   <ItemGroup>
+     <Compile Include="Assets\Scripts\HexMesh.cs" />
      <Compile Include="Assets\Scripts\HexCell.cs" />
+     <Compile Include="Assets\Scripts\HexCoordinatesDrawer.cs" />
      <Compile Include="Assets\Scripts\HexMetrics.cs" />
      <Compile Include="Assets\Scripts\HexGrid.cs" />
+     <Compile Include="Assets\Scripts\HexCoordinates.cs" />
  <Reference Include="UnityEngine">
  <HintPath>/home/mike/Unity/2020.3.13f1/Editor/Data/Managed/UnityEngine/UnityEngine.dll</HintPath>
  </Reference>
