@@ -44,6 +44,7 @@
      <Compile Include="Assets\Scripts\HexGrid.cs" />
      <Compile Include="Assets\Scripts\HexCoordinates.cs" />
      <Compile Include="Assets\Scripts\HexDirection.cs" />
+     <Compile Include="Assets\Scripts\HexEdgeType.cs" />
      <None Include="Assets\VertexColors.shader" />
     <Reference Include="UnityEngine">
         <HintPath>/home/mike/Unity/2020.3.13f1/Editor/Data/Managed/UnityEngine/UnityEngine.dll</HintPath>
