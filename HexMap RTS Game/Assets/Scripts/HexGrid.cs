@@ -77,15 +77,15 @@ public class HexGrid : MonoBehaviour
         }
         if (z > 0){
             if ((z & 1) == 0){
-                cell.SetNeighbor(HexDirection.SE, cells[i - cellCountZ]);
+                cell.SetNeighbor(HexDirection.SE, cells[i - cellCountX]);
                 if (x > 0){
-                    cell.SetNeighbor(HexDirection.SW, cells[i - cellCountZ - 1]);
+                    cell.SetNeighbor(HexDirection.SW, cells[i - cellCountX - 1]);
                 }
             }
             else {
-                cell.SetNeighbor(HexDirection.SW, cells[i - cellCountZ]);
-                if (x < cellCountZ - 1){
-                    cell.SetNeighbor(HexDirection.SE, cells[i - cellCountZ + 1]);
+                cell.SetNeighbor(HexDirection.SW, cells[i - cellCountX]);
+                if (x < cellCountX - 1){
+                    cell.SetNeighbor(HexDirection.SE, cells[i - cellCountX + 1]);
                 }
             }
         }
