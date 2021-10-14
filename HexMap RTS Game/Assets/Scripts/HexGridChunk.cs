@@ -6,6 +6,7 @@ public class HexGridChunk : MonoBehaviour
     HexCell[] cells;
 
     HexMesh hexMesh;
+    
     Canvas gridCanvas;
 
     void Awake(){
