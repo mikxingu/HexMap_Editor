@@ -26,6 +26,9 @@ public static class HexMetrics {
 
     public const float elevationPerturbStrength = 1.5f;
 
+    public const int chunkSizeX = 5, chunkSizeZ = 5;
+    
+
     public static Vector4 SampleNoise(Vector3 position){
         return noiseSource.GetPixelBilinear(
             position.x * noiseScale, 

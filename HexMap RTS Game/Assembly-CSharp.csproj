@@ -49,6 +49,7 @@
   <ItemGroup>
      <Compile Include="Assets\Scripts\HexMesh.cs" />
      <Compile Include="Assets\Scripts\HexCell.cs" />
+     <Compile Include="Assets\Scripts\EdgeVertices.cs" />
      <Compile Include="Assets\Scripts\HexMapEditor.cs" />
      <Compile Include="Assets\Scripts\HexCoordinatesDrawer.cs" />
      <Compile Include="Assets\Scripts\HexMetrics.cs" />

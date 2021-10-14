@@ -6,15 +6,20 @@ public class HexCell : MonoBehaviour
     HexCell[] neighbors;
     public HexCoordinates coordinates;
 
-    public Color color;
+    
 
     public RectTransform uiRect;
+
+    public HexGridChunk chunk;
 
     public int Elevation{
         get {
             return elevation;
         }
         set {
+            if (elevation == value){
+                return;
+            }
             elevation = value;
             Vector3 position = transform.localPosition;
             position.y = value * HexMetrics.elevationStep;
@@ -26,9 +31,25 @@ public class HexCell : MonoBehaviour
             Vector3 uiPosition = uiRect.localPosition;
             uiPosition.z = -position.y;
             uiRect.localPosition = uiPosition;
+            Refresh();
         }
     }
-    int elevation;
+
+    public Color Color{
+        get{
+            return color;
+        }
+        set {
+            if (color == value){
+                return;
+            }
+            color = value;
+            Refresh();
+        }
+    }
+
+    Color color;
+    int elevation = int.MinValue;
     public HexCell GetNeighbor(HexDirection direction){
         return neighbors[(int)direction];
     }
@@ -54,4 +75,9 @@ public class HexCell : MonoBehaviour
         }
     }
 
+    void Refresh(){
+        if(chunk){
+            chunk.Refresh();
+        }
+    }
 }
