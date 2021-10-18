@@ -6,25 +6,21 @@ public class HexMesh : MonoBehaviour
 {
    Mesh hexMesh;
    MeshCollider meshCollider;
-   List<Vector3> vertices;
+   static List<Vector3> vertices = new List<Vector3>();
 
-   List<int> triangles;
+   static List<int> triangles = new List<int>();
 
-   List<Color> colors;
+   static List<Color> colors = new List<Color>();
 
    void Awake(){
        GetComponent<MeshFilter>().mesh = hexMesh = new Mesh();
        meshCollider = gameObject.AddComponent<MeshCollider>();
        hexMesh.name = "Hex Mesh";
-       vertices = new List<Vector3>();
-       colors = new List<Color>();
-       triangles = new List<int>();
    }
 
    Vector3 Perturb(Vector3 position){
        Vector4 sample = HexMetrics.SampleNoise(position);
        position.x += (sample.x * 2f - 1f) * HexMetrics.cellPerturbStrength;
-       //position.y += (sample.y * 2f - 1f) * HexMetrics.cellPerturbStrength;
        position.z += (sample.z * 2f - 1f) * HexMetrics.cellPerturbStrength;
        return position;
    }

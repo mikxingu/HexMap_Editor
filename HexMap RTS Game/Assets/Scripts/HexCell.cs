@@ -78,6 +78,12 @@ public class HexCell : MonoBehaviour
     void Refresh(){
         if(chunk){
             chunk.Refresh();
+            for (int i = 0; i < neighbors.Length; i++){
+                HexCell neighbor = neighbors[i];
+                if (neighbor != null && neighbor.chunk != chunk){
+                    neighbor.chunk.Refresh();
+                }
+            }
         }
     }
 }
