@@ -1227,7 +1227,7 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 896173100}
   toggleTransition: 1
   graphic: {fileID: 1813548121}
-  m_Group: {fileID: 1718700148}
+  m_Group: {fileID: 0}
   onValueChanged:
     m_PersistentCalls:
       m_Calls:
