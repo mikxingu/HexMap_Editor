@@ -20,7 +20,7 @@ public static class HexMetrics {
 
     public const float horizontalTerraceStepSize = 1f / terraceSteps;
 
-    public const float cellPerturbStrength = 4f;
+    public const float cellPerturbStrength = 0f; //4f
 
     public const float noiseScale = 0.003f;
 

@@ -53,15 +53,37 @@ public class HexMesh : MonoBehaviour
            center + HexMetrics.GetSecondSolidCorner(direction) 
        );
 
-       if (cell.HasRiverThroughEdge(direction)){
+       if (cell.HasRiver) {
            e.v3.y = cell.StreamBedY;
+           TriangulateWithRiver(direction, cell, center, e);
        }
-
-       TriangulateEdgeFan(center, e, cell.Color);
+       else {
+           TriangulateEdgeFan(center, e, cell.Color);
+       }
+       
 
        if (direction <= HexDirection.SE){
            TriangulateConnection(direction, cell, e);
        }
+   }
+
+   void TriangulateWithRiver(
+       HexDirection direction, HexCell cell, Vector3 center, EdgeVertices e
+   ) {
+       Vector3 centerL = center +
+       HexMetrics.GetFirstSolidCorner(direction.Previous()) * 0.25f;
+
+       Vector3 centerR = center +
+       HexMetrics.GetSecondSolidCorner(direction.Next()) * 0.25f;
+
+       EdgeVertices m = new EdgeVertices(
+           Vector3.Lerp(centerL, e.v1, 0.5f),
+           Vector3.Lerp(centerR, e.v5, 0.5f)
+       );
+
+       m.v3.y = center.y = e.v3.y;
+
+       TriangulateEdgeStrip(m, cell.Color, e, cell.Color);
    }
 
    void TriangulateConnection(
