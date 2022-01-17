@@ -1,8 +1,12 @@
 using UnityEngine;
 
 public static class HexMetrics {
+
+    public const float outerToInner = 0.866025404f;
+
+    public const float innerToOuter = 1f / outerToInner;
     public const float outerRadius = 10f;
-    public const float innerRadius = outerRadius * 0.866025404f;
+    public const float innerRadius = outerRadius * outerToInner;
 
     public const float solidFactor = 0.8f;
 
@@ -66,6 +70,12 @@ public static class HexMetrics {
             blendFactor;
     }
 
+    public static Vector3 GetSolidEdgeMiddle (HexDirection direction) {
+        return
+            (corners[(int)direction] + corners[(int)direction + 1]) *
+            (0.5f * solidFactor);
+    }
+
     public static Vector3 TerraceLerp(Vector3 a, Vector3 b, int step){
         float h = step * HexMetrics.horizontalTerraceStepSize;
         a.x += (b.x - a.x) * h;
@@ -89,5 +99,13 @@ public static class HexMetrics {
             return HexEdgeType.Slope;
         }
         return HexEdgeType.Cliff;
+    }
+
+    public static Vector3 Perturb(Vector3 position)
+    {
+        Vector4 sample = SampleNoise(position);
+        position.x += (sample.x * 2f - 1f) * cellPerturbStrength;
+        position.z += (sample.z * 2f - 1f) * cellPerturbStrength;
+        return position;
     }
 }

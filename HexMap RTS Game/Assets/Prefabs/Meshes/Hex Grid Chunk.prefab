@@ -126,6 +126,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c19859e9726cd751fa49c001479033c6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  terrain: {fileID: 6105741221676248240}
+  rivers: {fileID: 0}
 --- !u!1 &8937762005281855313
 GameObject:
   m_ObjectHideFlags: 0
@@ -139,7 +141,7 @@ GameObject:
   - component: {fileID: 6276947060859478517}
   - component: {fileID: 6105741221676248240}
   m_Layer: 0
-  m_Name: Hex Mesh
+  m_Name: Terrain
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
