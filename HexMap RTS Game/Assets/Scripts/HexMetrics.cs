@@ -2,6 +2,7 @@ using UnityEngine;
 
 public static class HexMetrics {
 
+    public const float riverSurfaceElevationOffset = -0.5f;
     public const float outerToInner = 0.866025404f;
 
     public const float innerToOuter = 1f / outerToInner;
@@ -32,7 +33,7 @@ public static class HexMetrics {
 
     public const int chunkSizeX = 5, chunkSizeZ = 5;
 
-    public const float streamBedElevationOffset = -1f;
+    public const float streamBedElevationOffset = -1.75f;
     
 
     public static Vector4 SampleNoise(Vector3 position){

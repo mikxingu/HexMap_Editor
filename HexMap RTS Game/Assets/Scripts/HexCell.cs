@@ -61,6 +61,14 @@ public class HexCell : MonoBehaviour
         }
     }
 
+    public float RiverSurfaceY {
+        get {
+            return
+                (elevation + HexMetrics.riverSurfaceElevationOffset) *
+                HexMetrics.elevationStep;
+        }
+    }
+
     Color color;
     int elevation = int.MinValue;
     public HexCell GetNeighbor(HexDirection direction){
