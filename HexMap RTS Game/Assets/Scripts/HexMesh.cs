@@ -14,11 +14,6 @@ public class HexMesh : MonoBehaviour
     [NonSerialized] List<Color> colors;
 
     [NonSerialized] List<int> triangles;
-    // static List<Vector3> vertices = new List<Vector3>();
-
-    // static List<int> triangles = new List<int>();
-
-    // static List<Color> colors = new List<Color>();
 
     void Awake()
     {

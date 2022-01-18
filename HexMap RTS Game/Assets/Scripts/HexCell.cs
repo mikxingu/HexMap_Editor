@@ -2,6 +2,8 @@ using UnityEngine;
 
 public class HexCell : MonoBehaviour {
 
+	[SerializeField]
+	bool[] roads;
 	public HexCoordinates coordinates;
 
 	public RectTransform uiRect;
@@ -54,10 +56,56 @@ public class HexCell : MonoBehaviour {
 				RemoveIncomingRiver();
 			}
 
+			for (int i = 0; i < roads.Length; i++){
+				if (roads[i] && GetElevationDifference((HexDirection)i) > 1){
+					SetRoad(i, false);
+				}
+			}
+
 			Refresh();
 		}
 	}
 
+	public int GetElevationDifference (HexDirection direction){
+		int difference = elevation - GetNeighbor(direction).elevation;
+		return difference >= 0 ? difference : -difference;
+	}
+
+	public bool HasRoadThroughEdge (HexDirection direction){
+		return roads[(int) direction];
+	}
+
+	public bool HasRoads{
+		get{
+			for (int i =0; i < roads.Length; i++){
+				if (roads[i]){
+					return true;
+				}
+			}
+			return false;
+		}
+	}
+
+	public void AddRoad(HexDirection direction){
+		if (!roads[(int)direction] && !HasRiverThroughEdge(direction) &&
+		GetElevationDifference(direction) <= 1){
+			SetRoad((int)direction, true);
+		}
+	}
+	public void RemoveRoads(){
+		for (int i = 0; i < neighbors.Length; i++){
+			if (roads[i]){
+				SetRoad(i, false);
+			}
+		}
+	}
+
+	void SetRoad(int index, bool state){
+		roads[index] = state;
+		neighbors[index].roads[(int)((HexDirection)index).Opposite()] = state;
+		neighbors[index].RefreshSelfOnly();
+		RefreshSelfOnly();
+	}
 	public bool HasIncomingRiver {
 		get {
 			return hasIncomingRiver;
@@ -198,12 +246,14 @@ public class HexCell : MonoBehaviour {
 		}
 		hasOutgoingRiver = true;
 		outgoingRiver = direction;
-		RefreshSelfOnly();
+		// RefreshSelfOnly();
 
 		neighbor.RemoveIncomingRiver();
 		neighbor.hasIncomingRiver = true;
 		neighbor.incomingRiver = direction.Opposite();
-		neighbor.RefreshSelfOnly();
+		// neighbor.RefreshSelfOnly();
+
+		SetRoad((int)direction, false);
 	}
 
 	void Refresh () {
