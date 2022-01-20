@@ -66,6 +66,12 @@ public class HexCell : MonoBehaviour {
 		}
 	}
 
+	public HexDirection RiverBeginOrEndDirection {
+		get {
+			return hasIncomingRiver ? incomingRiver : outgoingRiver;
+		}
+	}
+
 	public int GetElevationDifference (HexDirection direction){
 		int difference = elevation - GetNeighbor(direction).elevation;
 		return difference >= 0 ? difference : -difference;
