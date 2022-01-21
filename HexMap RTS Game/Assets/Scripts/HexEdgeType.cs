@@ -1,4 +1,4 @@
-public enum HexEdgeType
-{
-    Flat, Slope, Cliff
-}
+using UnityEngine;
+
+public enum HexEdgeType { Flat, Slope, Cliff}
+
